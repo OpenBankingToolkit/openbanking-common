@@ -8,8 +8,8 @@
 package com.forgerock.openbanking.auth.services.directory;
 
 import com.forgerock.openbanking.auth.config.DirectoryConfiguration;
-import com.forgerock.openbanking.auth.model.ApplicationIdentity;
-import com.forgerock.openbanking.auth.model.SoftwareStatement;
+import com.forgerock.openbanking.model.ApplicationIdentity;
+import com.forgerock.openbanking.model.SoftwareStatement;
 import com.nimbusds.jose.jwk.JWK;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;

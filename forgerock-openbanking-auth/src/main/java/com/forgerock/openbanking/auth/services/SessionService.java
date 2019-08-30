@@ -8,21 +8,21 @@
 package com.forgerock.openbanking.auth.services;
 
 import com.forgerock.cert.SubjectHash;
+import com.forgerock.openbanking.am.gateway.AMGateway;
 import com.forgerock.openbanking.analytics.model.entries.SessionCounterType;
 import com.forgerock.openbanking.analytics.services.SessionCountersKPIService;
-import com.forgerock.openbanking.auth.constants.OpenBankingConstants;
-import com.forgerock.openbanking.auth.exceptions.OBErrorAuthenticationException;
-import com.forgerock.openbanking.auth.exceptions.OBErrorException;
-import com.forgerock.openbanking.auth.exceptions.OIDCException;
-import com.forgerock.openbanking.auth.model.OBRIRole;
-import com.forgerock.openbanking.auth.model.UserContext;
-import com.forgerock.openbanking.auth.model.UserGroup;
-import com.forgerock.openbanking.auth.model.error.OBRIErrorType;
-import com.forgerock.openbanking.auth.model.oidc.AccessTokenResponse;
-import com.forgerock.openbanking.auth.services.aspsp.AMGateway;
-import com.forgerock.openbanking.auth.services.oidc.OpenIdService;
-import com.forgerock.openbanking.core.exceptions.InvalidTokenException;
-import com.forgerock.openbanking.core.services.CryptoApiClient;
+import com.forgerock.openbanking.constants.OpenBankingConstants;
+import com.forgerock.openbanking.exceptions.OBErrorAuthenticationException;
+import com.forgerock.openbanking.exceptions.OBErrorException;
+import com.forgerock.openbanking.exceptions.OIDCException;
+import com.forgerock.openbanking.jwt.exceptions.InvalidTokenException;
+import com.forgerock.openbanking.jwt.services.CryptoApiClient;
+import com.forgerock.openbanking.model.OBRIRole;
+import com.forgerock.openbanking.model.UserContext;
+import com.forgerock.openbanking.model.UserGroup;
+import com.forgerock.openbanking.model.error.OBRIErrorType;
+import com.forgerock.openbanking.model.oidc.AccessTokenResponse;
+import com.forgerock.openbanking.oidc.services.OpenIdService;
 import com.nimbusds.jwt.JWTClaimsSet;
 import com.nimbusds.jwt.SignedJWT;
 import lombok.extern.slf4j.Slf4j;
@@ -41,7 +41,7 @@ import java.util.*;
 import java.util.stream.Collectors;
 import java.util.stream.Stream;
 
-import static com.forgerock.openbanking.auth.constants.AMConstants.SSOClaim.MTLS_SUBJECT_HASH;
+import static com.forgerock.openbanking.constants.AMConstants.SSOClaim.MTLS_SUBJECT_HASH;
 
 @Service
 @Slf4j

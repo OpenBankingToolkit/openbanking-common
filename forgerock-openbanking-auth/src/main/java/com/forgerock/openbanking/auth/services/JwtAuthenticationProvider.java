@@ -8,15 +8,15 @@
 package com.forgerock.openbanking.auth.services;
 
 import com.forgerock.cert.SubjectHash;
-import com.forgerock.openbanking.auth.config.JwtAuthConfigurationProperties;
-import com.forgerock.openbanking.auth.error.JwtAuthenticationFailureHandler;
-import com.forgerock.openbanking.auth.exceptions.OBErrorAuthenticationException;
-import com.forgerock.openbanking.auth.model.JwtAuthenticationToken;
-import com.forgerock.openbanking.auth.model.OBRIRole;
-import com.forgerock.openbanking.auth.model.UserContext;
-import com.forgerock.openbanking.auth.model.error.OBRIErrorType;
-import com.forgerock.openbanking.auth.services.oidc.UserInfoService;
-import com.forgerock.openbanking.core.services.CryptoApiClient;
+import com.forgerock.openbanking.jwt.config.JwtAuthConfigurationProperties;
+import com.forgerock.openbanking.jwt.services.CryptoApiClient;
+import com.forgerock.openbanking.model.error.JwtAuthenticationFailureHandler;
+import com.forgerock.openbanking.exceptions.OBErrorAuthenticationException;
+import com.forgerock.openbanking.model.JwtAuthenticationToken;
+import com.forgerock.openbanking.model.OBRIRole;
+import com.forgerock.openbanking.model.UserContext;
+import com.forgerock.openbanking.model.error.OBRIErrorType;
+import com.forgerock.openbanking.oidc.services.UserInfoService;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -34,7 +34,7 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.Optional;
 
-import static com.forgerock.openbanking.auth.constants.AMConstants.SSOClaim.MTLS_SUBJECT_HASH;
+import static com.forgerock.openbanking.constants.AMConstants.SSOClaim.MTLS_SUBJECT_HASH;
 
 
 @Component
