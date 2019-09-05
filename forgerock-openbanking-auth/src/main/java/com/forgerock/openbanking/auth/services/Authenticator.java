@@ -7,11 +7,11 @@
  */
 package com.forgerock.openbanking.auth.services;
 
-import com.forgerock.openbanking.auth.config.JwtAuthConfigurationProperties;
-import com.forgerock.openbanking.auth.error.JwtAuthenticationFailureHandler;
-import com.forgerock.openbanking.auth.model.JwtAuthenticationToken;
-import com.forgerock.openbanking.auth.model.OBRIRole;
-import com.forgerock.openbanking.auth.model.UserContext;
+import com.forgerock.openbanking.jwt.config.JwtAuthConfigurationProperties;
+import com.forgerock.openbanking.model.error.JwtAuthenticationFailureHandler;
+import com.forgerock.openbanking.model.JwtAuthenticationToken;
+import com.forgerock.openbanking.model.OBRIRole;
+import com.forgerock.openbanking.model.UserContext;
 import com.forgerock.openbanking.auth.services.cookie.CookieService;
 import com.forgerock.openbanking.auth.services.x509.ForgeRockAppMATLService;
 import com.nimbusds.jose.jwk.JWK;

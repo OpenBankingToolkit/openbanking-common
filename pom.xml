@@ -11,9 +11,9 @@
 <project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/maven-v4_0_0.xsd">
     <modelVersion>4.0.0</modelVersion>
 
-    <name>ForgeRock OpenBanking Reference Implementation - Parent</name>
+    <name>ForgeRock OpenBanking Reference Implementation - commons</name>
     <groupId>com.forgerock.openbanking</groupId>
-    <artifactId>forgerock-openbanking-starter-parent</artifactId>
+    <artifactId>forgerock-openbanking-starter-commons</artifactId>
     <version>1.0.19-SNAPSHOT</version>
     <packaging>pom</packaging>
 
@@ -83,15 +83,23 @@
     </properties>
 
     <modules>
-        <module>forgerock-openbanking-serialisers</module>
         <module>forgerock-openbanking-ssl</module>
         <module>forgerock-openbanking-auth</module>
         <module>forgerock-openbanking-upgrade</module>
+        <module>forgerock-openbanking-model</module>
+        <module>forgerock-openbanking-oidc</module>
+        <module>forgerock-openbanking-am</module>
+        <module>forgerock-openbanking-jwt</module>
     </modules>
 
     <dependencyManagement>
         <dependencies>
             <!-- OpenBanking -->
+            <dependency>
+                <groupId>com.forgerock.openbanking</groupId>
+                <artifactId>forgerock-openbanking-jwt</artifactId>
+                <version>${project.version}</version>
+            </dependency>
             <dependency>
                 <groupId>com.forgerock.openbanking</groupId>
                 <artifactId>forgerock-openbanking-serialisers</artifactId>
@@ -110,6 +118,21 @@
             <dependency>
                 <groupId>com.forgerock.openbanking</groupId>
                 <artifactId>forgerock-openbanking-upgrade</artifactId>
+                <version>${project.version}</version>
+            </dependency>
+            <dependency>
+                <groupId>com.forgerock.openbanking</groupId>
+                <artifactId>forgerock-openbanking-model</artifactId>
+                <version>${project.version}</version>
+            </dependency>
+            <dependency>
+                <groupId>com.forgerock.openbanking</groupId>
+                <artifactId>forgerock-openbanking-am</artifactId>
+                <version>${project.version}</version>
+            </dependency>
+            <dependency>
+                <groupId>com.forgerock.openbanking</groupId>
+                <artifactId>forgerock-openbanking-oidc</artifactId>
                 <version>${project.version}</version>
             </dependency>
         </dependencies>

@@ -16,11 +16,27 @@
 
     <parent>
         <groupId>com.forgerock.openbanking</groupId>
-        <artifactId>forgerock-openbanking-starter-parent</artifactId>
+        <artifactId>forgerock-openbanking-starter-commons</artifactId>
         <version>1.0.19-SNAPSHOT</version>
     </parent>
 
     <dependencies>
+        <dependency>
+            <groupId>com.forgerock.openbanking</groupId>
+            <artifactId>forgerock-openbanking-jwt</artifactId>
+        </dependency>
+        <dependency>
+            <groupId>com.forgerock.openbanking</groupId>
+            <artifactId>forgerock-openbanking-oidc</artifactId>
+        </dependency>
+        <dependency>
+            <groupId>com.forgerock.openbanking</groupId>
+            <artifactId>forgerock-openbanking-ssl</artifactId>
+        </dependency>
+        <dependency>
+            <groupId>com.forgerock.openbanking</groupId>
+            <artifactId>forgerock-openbanking-model</artifactId>
+        </dependency>
         <dependency>
             <groupId>com.forgerock.openbanking</groupId>
             <artifactId>openbanking-sdk</artifactId>
@@ -28,11 +44,6 @@
         <dependency>
             <groupId>org.springframework.cloud</groupId>
             <artifactId>spring-cloud-starter-zipkin</artifactId>
-        </dependency>
-        <dependency>
-            <groupId>com.forgerock.openbanking.jwkms</groupId>
-            <artifactId>forgerock-openbanking-jwkms-client</artifactId>
-            <version>1.1.0</version>
         </dependency>
         <dependency>
             <groupId>com.forgerock.openbanking.analytics</groupId>
@@ -50,10 +61,6 @@
         <dependency>
             <groupId>org.apache.httpcomponents</groupId>
             <artifactId>httpclient</artifactId>
-        </dependency>
-        <dependency>
-            <groupId>com.forgerock.openbanking</groupId>
-            <artifactId>forgerock-openbanking-ssl</artifactId>
         </dependency>
         <dependency>
             <groupId>org.springframework.retry</groupId>

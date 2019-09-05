@@ -7,7 +7,7 @@
  */
 package com.forgerock.openbanking.auth.config;
 
-import com.forgerock.openbanking.auth.error.ClientResponseErrorHandler;
+import com.forgerock.openbanking.model.error.ClientResponseErrorHandler;
 import com.forgerock.openbanking.auth.rest.OnBehalfApplicationRestTemplate;
 import com.forgerock.openbanking.ssl.config.SslConfiguration;
 import com.forgerock.openbanking.ssl.exceptions.SslConfigurationFailure;
