@@ -18,7 +18,7 @@ steps:
 
   #  Prepare stage
   check-copyright:
-    image: maven:3.6.1-jdk-11-slim
+    image: r.cfcr.io/openbanking/ob-release:latest
     stage: "prepare"
     title: "Verify copyrights"
     working-directory: ${{main_clone}}
@@ -27,7 +27,7 @@ steps:
   # Build stage
   build-stage:
     stage: "build"
-    image: maven:3.6.1-jdk-11-slim
+    image: r.cfcr.io/openbanking/ob-release:latest
     title: "Compile, build and install artifact"
     working-directory: ${{main_clone}}
     commands:
@@ -36,7 +36,7 @@ steps:
   # test stage
   test-stage:
     stage: "unit-test"
-    image: maven:3.6.1-jdk-11-slim
+    image: r.cfcr.io/openbanking/ob-release:latest
     title: "Run unit tests"
     working-directory: ${{main_clone}}
     commands:
@@ -50,8 +50,7 @@ steps:
     commands:
       - git checkout $CF_BRANCH
       - git reset --hard origin/$CF_BRANCH
-      - cp /ob-release/* ./
-      - ./release.sh /codefresh/volume/${{CF_BRANCH_TAG_NORMALIZED}}/.m2/repository
+      - release.sh /codefresh/volume/${{CF_BRANCH_TAG_NORMALIZED}}/.m2/repository
     environment:
       - GITHUB_GPG_KEY_ID=${{GITHUB_GPG_KEY_ID}}
       - GITHUB_GPG_KEY=${{GITHUB_GPG_KEY}}

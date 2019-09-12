@@ -23,10 +23,6 @@
     <dependencies>
         <dependency>
             <groupId>com.forgerock.openbanking</groupId>
-            <artifactId>forgerock-openbanking-ssl</artifactId>
-        </dependency>
-        <dependency>
-            <groupId>com.forgerock.openbanking</groupId>
             <artifactId>openbanking-sdk</artifactId>
         </dependency>
         <dependency>
