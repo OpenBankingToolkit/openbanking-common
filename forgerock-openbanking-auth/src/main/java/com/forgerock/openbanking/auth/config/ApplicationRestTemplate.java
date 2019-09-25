@@ -11,7 +11,7 @@ import com.forgerock.openbanking.ssl.config.SslConfiguration;
 import com.forgerock.openbanking.ssl.exceptions.RestTemplateLoadingException;
 import com.forgerock.openbanking.ssl.exceptions.SslConfigurationFailure;
 import com.forgerock.openbanking.ssl.model.ForgeRockApplicationResponse;
-import com.forgerock.openbanking.ssl.services.CertificateLoader;
+import com.forgerock.openbanking.auth.services.CertificateLoader;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.http.HttpMethod;
 import org.springframework.http.HttpStatus;

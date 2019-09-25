@@ -11,7 +11,7 @@ import com.forgerock.openbanking.model.error.ClientResponseErrorHandler;
 import com.forgerock.openbanking.auth.rest.OnBehalfApplicationRestTemplate;
 import com.forgerock.openbanking.ssl.config.SslConfiguration;
 import com.forgerock.openbanking.ssl.exceptions.SslConfigurationFailure;
-import com.forgerock.openbanking.ssl.services.CertificateLoader;
+import com.forgerock.openbanking.auth.services.CertificateLoader;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.beans.factory.annotation.Value;
