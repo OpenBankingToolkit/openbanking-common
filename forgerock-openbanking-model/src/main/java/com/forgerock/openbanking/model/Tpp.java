@@ -7,119 +7,65 @@
  */
 package com.forgerock.openbanking.model;
 
+import com.forgerock.openbanking.constants.OpenBankingConstants;
+import com.forgerock.openbanking.model.oidc.OIDCRegistrationResponse;
 import com.nimbusds.jwt.JWTClaimsSet;
+import lombok.AllArgsConstructor;
+import lombok.Builder;
+import lombok.Data;
+import lombok.NoArgsConstructor;
+import org.springframework.data.annotation.CreatedDate;
+import org.springframework.data.annotation.Id;
+import org.springframework.data.annotation.LastModifiedDate;
+import org.springframework.data.mongodb.core.index.Indexed;
+import org.springframework.data.mongodb.core.mapping.Document;
 
 import java.text.ParseException;
+import java.util.Date;
 import java.util.HashSet;
 import java.util.Set;
 
+
+@Data
+@NoArgsConstructor
+@AllArgsConstructor
+@Builder
+@Document
 public class Tpp {
+    @Id
+    @Indexed
     public String id;
     public String directoryId;
     public String name;
     public String officialName;
+    @Indexed
     private String certificateCn;
+    @Indexed
     private String clientId;
     private String ssa;
     private String tppRequest;
+    private OIDCRegistrationResponse registrationResponse;
 
-    private Set<Type> types = new HashSet<>();
+    @CreatedDate
+    public Date created;
+    @LastModifiedDate
+    public Date updated;
 
-    public enum Type {
-        AISP, PISP
-    }
-
-    public String getId() {
-        return id;
-    }
-
-    public void setId(String id) {
-        this.id = id;
-    }
-
-    public String getName() {
-        return name;
-    }
-
-    public void setName(String name) {
-        this.name = name;
-    }
-
-    public String getOfficialName() {
-        return officialName;
-    }
-
-    public void setOfficialName(String officialName) {
-        this.officialName = officialName;
-    }
-
-    public String getCertificateCn() {
-        return certificateCn;
-    }
-
-    public void setCertificateCn(String certificateCn) {
-        this.certificateCn = certificateCn;
-    }
-
-    public String getClientId() {
-        return clientId;
-    }
-
-    public void setClientId(String clientId) {
-        this.clientId = clientId;
-    }
-
-    public Set<Type> getTypes() {
-        return types;
-    }
-
-    public void setTypes(Set<Type> type) {
-        this.types = type;
-    }
-
-    public void addType(Type type) {
-        types.add(type);
-    }
-
-    public String getSsa() {
-        return ssa;
-    }
+    private Set<SoftwareStatementRole> types = new HashSet<>();
 
     public JWTClaimsSet getSsaClaim() throws ParseException {
         return JWTClaimsSet.parse(ssa);
     }
 
-    public void setSsa(String ssa) {
-        this.ssa = ssa;
-    }
-
-    public String getTppRequest() {
-        return tppRequest;
-    }
-
-    public void setTppRequest(String tppRequest) {
-        this.tppRequest = tppRequest;
-    }
-
-    public String getDirectoryId() {
-        return directoryId;
-    }
-
-    public void setDirectoryId(String directoryId) {
-        this.directoryId = directoryId;
-    }
-
-    @Override
-    public String toString() {
-        return "Tpp{" +
-                "id='" + id + '\'' +
-                ", name='" + name + '\'' +
-                ", certificateCn='" + certificateCn + '\'' +
-                ", officialName='" + officialName + '\'' +
-                ", clientId='" + clientId + '\'' +
-                ", ssa='" + ssa + '\'' +
-                ", tppRequest='" + tppRequest + '\'' +
-                ", types=" + types +
-                '}';
+    public String getLogo() {
+        if (getSsa() != null) {
+            try {
+                JWTClaimsSet claims = getSsaClaim();
+                return claims.getStringClaim(OpenBankingConstants.SSAClaims.SOFTWARE_LOGO_URI);
+            } catch (ParseException e) {
+                //Couldn't read claims
+            }
+        }
+        return null;
     }
 }
