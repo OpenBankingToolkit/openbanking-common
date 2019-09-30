@@ -115,10 +115,9 @@ public enum OBRIErrorType {
             ErrorCode.OBRI_ACCOUNT_REQUEST_NOT_FOUND,
             "Account request '%s' not found."),
 
-
     UNAUTHORISED_ACCOUNT(
-            HttpStatus.FORBIDDEN,
-            ErrorCode.OBRI_ACCOUNT_INVALID,
+            HttpStatus.BAD_REQUEST,
+            OBStandardErrorCodes1.UK_OBIE_FIELD_INVALID, // Based on expectation from OBIE Functional Conformance suite
             "You are not authorised to access account '%s'. The account request '%s' only authorised the following accounts: '%s'"),
 
     PERMISSIONS_INVALID(
@@ -198,6 +197,10 @@ public enum OBRIErrorType {
             HttpStatus.BAD_REQUEST,
             OBStandardErrorCodes1.UK_OBIE_FIELD_INVALID,
             "The 'Initiation.RemittanceInformation.Reference' field for a Balance Transfer payment consent is missing. This field is mandatory for a Balance Transfer payment."),
+    PAYMENT_BALANCE_TRANSFER_INVALID_PAYMENT_CONTEXT_CODE(
+            HttpStatus.BAD_REQUEST,
+            OBStandardErrorCodes1.UK_OBIE_FIELD_INVALID,
+            "The 'Risk.PaymentContextCode' for a Balance Transfer payment consent was invalid. Payment Context Code account must 'PartyToParty'"),
     PAYMENT_MONEY_TRANSFER_INVALID_CREDITOR_ACCOUNT(
             HttpStatus.BAD_REQUEST,
             OBStandardErrorCodes1.UK_OBIE_FIELD_INVALID,
@@ -210,6 +213,10 @@ public enum OBRIErrorType {
             HttpStatus.BAD_REQUEST,
             OBStandardErrorCodes1.UK_OBIE_FIELD_INVALID,
             "The 'Initiation.RemittanceInformation.Reference' field for a Money Transfer payment consent is missing. This field is mandatory for a Money Transfer payment."),
+    PAYMENT_MONEY_TRANSFER_INVALID_PAYMENT_CONTEXT_CODE(
+            HttpStatus.BAD_REQUEST,
+            OBStandardErrorCodes1.UK_OBIE_FIELD_INVALID,
+            "The 'Risk.PaymentContextCode' for a Money Transfer payment consent was invalid. Payment Context Code account must 'PartyToParty'"),
     PAYMENT_PAYM_INVALID_PAYMENT_CONTEXT_CODE(
             HttpStatus.BAD_REQUEST,
             OBStandardErrorCodes1.UK_OBIE_FIELD_INVALID,
@@ -226,6 +233,10 @@ public enum OBRIErrorType {
             HttpStatus.BAD_REQUEST,
             OBStandardErrorCodes1.UK_OBIE_FIELD_INVALID,
             "The 'CreditorAccount.Identification' field for a Paym payment consent is missing. This field is mandatory for a Paym payment and should identify the mobile number."),
+    PAYMENT_PAYM_CUSTOMER_IDENTIFICATION_NOT_A_UK_MOBILE_NUMBER(
+            HttpStatus.BAD_REQUEST,
+            OBStandardErrorCodes1.UK_OBIE_FIELD_INVALID,
+            "The 'CreditorAccount.Identification' field for a Paym payment consent is must be a UK mobile phone number. It start with a county code [0 | 44 | 0044 | +44] and be followed a 10 digit number. This field is mandatory for a Paym payment and should identify the mobile number."),
 
     INVALID_CALLBACK_URL(
             HttpStatus.BAD_REQUEST,

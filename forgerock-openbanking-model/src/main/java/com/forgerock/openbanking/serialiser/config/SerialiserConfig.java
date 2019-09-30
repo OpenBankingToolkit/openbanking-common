@@ -8,18 +8,18 @@
 package com.forgerock.openbanking.serialiser.config;
 
 import com.fasterxml.jackson.annotation.JsonInclude;
-import com.forgerock.openbanking.serialiser.Base64Serialiser;
-import com.forgerock.openbanking.serialiser.IsoDateTimeDeserializer;
-import com.forgerock.openbanking.serialiser.IsoDateTimeSerializer;
+import com.forgerock.openbanking.serialiser.*;
 import com.forgerock.openbanking.serialiser.nimbus.*;
 import com.nimbusds.jose.jwk.JWK;
 import com.nimbusds.jose.jwk.JWKSet;
 import com.nimbusds.jose.util.Base64;
 import com.nimbusds.jwt.JWTClaimsSet;
+import org.apache.http.client.methods.HttpTrace;
 import org.joda.time.DateTime;
 import org.springframework.boot.autoconfigure.jackson.Jackson2ObjectMapperBuilderCustomizer;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
+import uk.org.openbanking.datamodel.account.OBExternalPermissions1Code;
 
 @Configuration
 public class SerialiserConfig {
@@ -30,7 +30,10 @@ public class SerialiserConfig {
             jacksonObjectMapperBuilder.serializerByType(Base64.class, new Base64Serialiser());
             jacksonObjectMapperBuilder.serializerByType(DateTime.class, new IsoDateTimeSerializer());
             jacksonObjectMapperBuilder.deserializerByType(DateTime.class, new IsoDateTimeDeserializer());
+            jacksonObjectMapperBuilder.deserializerByType(OBExternalPermissions1Code.class, new OBExternalPermissions1CodeDeserializer());
             jacksonObjectMapperBuilder.deserializerByType(JWTClaimsSet.class, new JWTClaimsSetDeserializer());
+            jacksonObjectMapperBuilder.serializerByType(OBExternalPermissions1Code.class, new OBExternalPermissions1CodeSerializer());
+            jacksonObjectMapperBuilder.serializerByType(HttpTrace.class, new HttpTraceSerialiser());
             jacksonObjectMapperBuilder.serializerByType(JWTClaimsSet.class, new JWTClaimsSetSerializer());
 
             jacksonObjectMapperBuilder.serializerByType(JWK.class, new JWKSerializer());
