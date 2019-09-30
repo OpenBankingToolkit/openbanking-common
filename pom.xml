@@ -84,7 +84,6 @@
 
     <modules>
         <module>forgerock-openbanking-ssl</module>
-        <module>forgerock-openbanking-auth</module>
         <module>forgerock-openbanking-upgrade</module>
         <module>forgerock-openbanking-model</module>
         <module>forgerock-openbanking-oidc</module>
