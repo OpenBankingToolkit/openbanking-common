@@ -25,8 +25,7 @@ import javax.annotation.Resource;
 @Service
 public class AMAuthentication {
     private final static Logger LOGGER = LoggerFactory.getLogger(AMOIDCRegistrationService.class);
-    @Resource(name = "forExternalForgeRockApplication")
-    private RestTemplate restTemplate;
+
     @Autowired
     private AMOpenBankingConfiguration amOpenBankingConfiguration;
     @Value("${am.internal.root}")

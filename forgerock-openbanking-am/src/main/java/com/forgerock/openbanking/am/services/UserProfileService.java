@@ -9,6 +9,7 @@ package com.forgerock.openbanking.am.services;
 
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpEntity;
 import org.springframework.http.HttpHeaders;
 import org.springframework.http.MediaType;
@@ -21,7 +22,7 @@ import java.util.Map;
 @Service
 public class UserProfileService {
     private final static Logger LOGGER = LoggerFactory.getLogger(UserProfileService.class);
-    @Resource(name = "forExternalForgeRockApplication")
+    @Autowired
     private RestTemplate restTemplate;
 
     public Map<String, String> getProfile(String ssoToken, String userProfileEndpoint, String cookieName) {
