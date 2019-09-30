@@ -34,7 +34,9 @@ public class UpgradeStepsRegistry {
         TreeMap<Version, UpgradeStep> upgradeSteps = new TreeMap<>();
         for (Map.Entry<String, UpgradeStep> entry : beansOfType.entrySet()){
             UpgradeMeta upgradeMeta = entry.getValue().getClass().getDeclaredAnnotation(UpgradeMeta.class);
-            upgradeSteps.put(new Version(upgradeMeta.version()), entry.getValue());
+            if (upgradeMeta != null) {
+                upgradeSteps.put(new Version(upgradeMeta.version()), entry.getValue());
+            }
         }
         return upgradeSteps;
     }
