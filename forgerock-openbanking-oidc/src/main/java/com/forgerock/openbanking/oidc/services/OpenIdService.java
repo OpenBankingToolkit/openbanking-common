@@ -35,6 +35,7 @@ import org.springframework.util.MultiValueMap;
 import org.springframework.web.client.HttpClientErrorException;
 import org.springframework.web.util.UriComponentsBuilder;
 
+import java.io.IOException;
 import java.security.cert.X509Certificate;
 import java.text.ParseException;
 import java.time.Duration;
@@ -52,13 +53,13 @@ public class OpenIdService {
             OpenBankingConstants.Scope.OPENID, OpenBankingConstants.Scope.AUTHORITY );
 
 
-    @Value("${am.realm.auth.oidc.issuerid}")
+    @Value("${ob.auth.oidc.idp.issuerid}")
     public String amIssuer;
-    @Value("${jwt-auth.jwk-uri}")
+    @Value("${ob.auth.oidc.idp.jwk-uri}")
     public String amJwkUri;
-    @Value("${am.realm.auth.oidc.authorize}")
+    @Value("${ob.auth.oidc.idp.authorize}")
     public String amAuthorize;
-    @Value("${am.internal.oidc.client-id:none}")
+    @Value("${ob.auth.oidc.client.client-id:none}")
     public String clientId;
     @Autowired
     private JwtAuthConfigurationProperties jwtAuthConfigurationProperties;
@@ -216,14 +217,14 @@ public class OpenIdService {
         return builder.build().encode().toUriString();
     }
 
-    public UserContext fromIdToken(String idToken) throws ParseException, InvalidTokenException {
+    public UserContext fromIdToken(String idToken) throws ParseException, InvalidTokenException, IOException {
         cryptoApiClient.validateJws(idToken, jwtAuthConfigurationProperties.getExpectedAudienceId(),
                 jwtAuthConfigurationProperties.getExpectedIssuerId(), jwtAuthConfigurationProperties.getJwkUri());
 
         return UserContext.createOIDCClient(idToken);
     }
 
-    public UserContext fromIdToken(String idToken, X509Certificate[] certs) throws ParseException, InvalidTokenException {
+    public UserContext fromIdToken(String idToken, X509Certificate[] certs) throws ParseException, InvalidTokenException, IOException {
         cryptoApiClient.validateJws(idToken, jwtAuthConfigurationProperties.getExpectedAudienceId(),
                 jwtAuthConfigurationProperties.getExpectedIssuerId(), jwtAuthConfigurationProperties.getJwkUri());
 
