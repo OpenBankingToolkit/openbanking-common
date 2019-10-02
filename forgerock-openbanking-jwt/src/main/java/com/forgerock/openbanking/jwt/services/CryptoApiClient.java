@@ -10,14 +10,17 @@ package com.forgerock.openbanking.jwt.services;
 import com.forgerock.openbanking.jwt.exceptions.InvalidTokenException;
 import com.forgerock.openbanking.jwt.model.CreateDetachedJwtResponse;
 import com.forgerock.openbanking.jwt.model.SigningRequest;
+import com.forgerock.openbanking.jwt.model.ValidDetachedJwtResponse;
 import com.forgerock.openbanking.ssl.model.csr.CSRGenerationResponse;
 import com.forgerock.openbanking.ssl.model.csr.CSRImportPemsRequest;
+import com.nimbusds.jose.JOSEException;
 import com.nimbusds.jose.jwk.JWK;
 import com.nimbusds.jose.jwk.KeyUse;
 import com.nimbusds.jwt.JWTClaimsSet;
 import com.nimbusds.jwt.SignedJWT;
 import org.springframework.web.client.RestTemplate;
 
+import java.io.IOException;
 import java.text.ParseException;
 
 public interface CryptoApiClient {
@@ -40,41 +43,35 @@ public interface CryptoApiClient {
 
     CreateDetachedJwtResponse signPayloadToDetachedJwt(SigningRequest signingRequest, String issuerId, String payload);
 
-    String signAndEncryptClaims(JWTClaimsSet jwtClaimsSet, String jwkUri);
+    String signAndEncryptClaims(JWTClaimsSet jwtClaimsSet, String jwkUri) throws JOSEException;
 
-    String signAndEncryptClaims(String issuerId, JWTClaimsSet jwtClaimsSet, String jwkUri);
+    String signAndEncryptClaims(String issuerId, JWTClaimsSet jwtClaimsSet, String jwkUri) throws JOSEException;
 
-    String signAndEncryptJwtForOBApp(JWTClaimsSet jwtClaimsSet, String obAppId);
+    String signAndEncryptJwtForOBApp(JWTClaimsSet jwtClaimsSet, String obAppId) throws JOSEException;
 
-    String signAndEncryptJwtForOBApp(String issuerId, JWTClaimsSet jwtClaimsSet, String obAppId);
+    String signAndEncryptJwtForOBApp(String issuerId, JWTClaimsSet jwtClaimsSet, String obAppId) throws JOSEException;
 
-    SignedJWT decryptJwe(String serializedJwe) throws ParseException;
+    SignedJWT decryptJwe(String serializedJwe) throws ParseException, JOSEException;
 
-    SignedJWT decryptJwe(String expectedAudienceId, String serializedJwe) throws ParseException;
+    SignedJWT decryptJwe(String expectedAudienceId, String serializedJwe) throws ParseException, JOSEException;
 
-    void validateJws(String serializedJws, String expectedIssuerId) throws InvalidTokenException;
+    SignedJWT validateJws(String serializedJws, String expectedIssuerId) throws ParseException, InvalidTokenException;
 
-    void validateJwsWithExpectedAudience(String serializedJws, String expectedAudienceId, String expectedIssuerId) throws InvalidTokenException;
+    SignedJWT validateJwsWithExpectedAudience(String serializedJws, String expectedAudienceId, String expectedIssuerId) throws ParseException, InvalidTokenException;
 
-    void validateJws(String serializedJws, String expectedIssuerId, String jwkUri) throws InvalidTokenException;
+    SignedJWT validateJws(String serializedJws, String expectedIssuerId, String jwkUri) throws ParseException, InvalidTokenException, IOException;
 
-    void validateJwsWithJWK(String serializedJws, String expectedIssuerId, String jwk) throws InvalidTokenException;
+    SignedJWT validateJwsWithJWK(String serializedJws, String expectedIssuerId, String jwk) throws ParseException, InvalidTokenException;
 
-    void validateJws(String serializedJws, String expectedAudienceId, String expectedIssuerId, String jwkUri)
-            throws InvalidTokenException;
+    SignedJWT validateJws(String serializedJws, String expectedAudienceId, String expectedIssuerId, String jwkUri)
+            throws ParseException, InvalidTokenException, IOException;
 
-    void validateDetachedJWS(String jwsDetachedSignature, Object body, String expectedAudienceId, String expectedIssuerId, String jwkUri)
-            throws InvalidTokenException;
+    ValidDetachedJwtResponse validateDetachedJWS(String jwsDetachedSignature, Object body, String expectedAudienceId, String expectedIssuerId, String jwkUri)
+            throws InvalidTokenException, ParseException, IOException;
 
-    void validateDetachedJWSWithJWK(String jwsDetachedSignature, Object body, String expectedAudienceId, String expectedIssuerId, JWK jwk)
-            throws InvalidTokenException;
+    ValidDetachedJwtResponse validateDetachedJWSWithJWK(String jwsDetachedSignature, Object body, String expectedAudienceId, String expectedIssuerId, JWK jwk)
+            throws InvalidTokenException, ParseException, IOException;
 
     SignedJWT verifyAccessToken(String accessTokenBearer)
-            throws ParseException, InvalidTokenException;
-
-    CSRGenerationResponse generateCSR(String CN, String OU, String O);
-
-    CSRGenerationResponse importCSRResponse(CSRImportPemsRequest csrImportPemsRequest);
-
-    String exportAsPem(KeyUse keyUse);
+            throws ParseException, InvalidTokenException, IOException;
 }
