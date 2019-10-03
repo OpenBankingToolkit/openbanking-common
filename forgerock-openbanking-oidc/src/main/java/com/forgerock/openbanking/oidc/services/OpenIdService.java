@@ -154,7 +154,7 @@ public class OpenIdService {
         requestParameterClaims.subject(clientId);
         requestParameterClaims.audience(amIssuer);
         requestParameterClaims.expirationTime(new Date(new Date().getTime() + Duration.ofMinutes(10).toMillis()));
-        return cryptoApiClient.signClaims(clientId, requestParameterClaims.build());
+        return cryptoApiClient.signClaims(clientId, requestParameterClaims.build(), false);
     }
 
 
@@ -189,9 +189,9 @@ public class OpenIdService {
             requestParameterClaims.claim(OIDCConstants.OIDCClaim.CLAIMS, claims);
         }
         LOGGER.debug("Request parameter JWS : '{}'",
-                cryptoApiClient.signClaims(clientId, requestParameterClaims.build()));
+                cryptoApiClient.signClaims(clientId, requestParameterClaims.build(), false));
 
-        return cryptoApiClient.signClaims(clientId, requestParameterClaims.build());
+        return cryptoApiClient.signClaims(clientId, requestParameterClaims.build(), false);
     }
 
 

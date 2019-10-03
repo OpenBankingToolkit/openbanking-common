@@ -33,7 +33,7 @@ public interface CryptoApiClient {
 
     String signClaims(SigningRequest signingRequest, JWTClaimsSet jwtClaimsSet);
 
-    String signClaims(String issuerId, JWTClaimsSet jwtClaimsSet);
+    String signClaims(String issuerId, JWTClaimsSet jwtClaimsSet, boolean includeKey);
 
     String signClaims(SigningRequest signingRequest, String issuerId, JWTClaimsSet jwtClaimsSet);
 
