@@ -8,6 +8,8 @@
 package com.forgerock.openbanking.ssl.config;
 
 import com.forgerock.openbanking.ssl.exceptions.SslConfigurationFailure;
+import io.netty.handler.ssl.SslContext;
+import io.netty.handler.ssl.SslContextBuilder;
 import org.apache.http.HttpRequest;
 import org.apache.http.HttpResponse;
 import org.apache.http.client.HttpClient;
@@ -26,10 +28,10 @@ import javax.net.ssl.SSLContext;
 import java.io.IOException;
 import java.io.InputStream;
 import java.net.URL;
-import java.security.KeyStore;
-import java.security.KeyStoreException;
-import java.security.NoSuchAlgorithmException;
+import java.security.*;
+import java.security.cert.Certificate;
 import java.security.cert.CertificateException;
+import java.security.cert.X509Certificate;
 
 @Configuration
 public class SslConfiguration {
@@ -47,19 +49,7 @@ public class SslConfiguration {
 
     public HttpComponentsClientHttpRequestFactory factory(String keyAlias, boolean checkHostname) throws SslConfigurationFailure {
         try {
-            SSLContextBuilder sslContextBuilder;
-            if (sslEnabled) {
-                sslContextBuilder = new SSLContextBuilder()
-                        .loadKeyMaterial(
-                                getStore(keyStore.getURL(), keyStorePassword.toCharArray()),
-                                keyPassword.toCharArray(),
-                                (aliases, socket) -> keyAlias
-                        );
-            } else {
-                sslContextBuilder = org.apache.http.ssl.SSLContexts.custom();
-            }
-
-            SSLContext sslContext = sslContextBuilder.build();
+            SSLContext sslContext = getSslContext(keyAlias);
             SSLConnectionSocketFactory socketFactory;
 
             if (checkHostname) {
@@ -81,6 +71,33 @@ public class SslConfiguration {
         } catch (Exception e) {
             throw new SslConfigurationFailure(e);
         }
+    }
+
+    public SSLContext getSslContext(String keyAlias) throws NoSuchAlgorithmException, KeyStoreException, UnrecoverableKeyException, IOException, CertificateException, KeyManagementException {
+        SSLContextBuilder sslContextBuilder;
+        if (sslEnabled) {
+            sslContextBuilder = new SSLContextBuilder()
+                    .loadKeyMaterial(
+                            getStore(keyStore.getURL(), keyStorePassword.toCharArray()),
+                            keyPassword.toCharArray(),
+                            (aliases, socket) -> keyAlias
+                    );
+        } else {
+            sslContextBuilder = org.apache.http.ssl.SSLContexts.custom();
+        }
+
+        return sslContextBuilder.build();
+    }
+
+    public SslContext getSslContextForReactor(String keyAlias) throws KeyStoreException, UnrecoverableKeyException, NoSuchAlgorithmException, IOException, CertificateException {
+        KeyStore keyStore1 = getStore(keyStore.getURL(), keyStorePassword.toCharArray());
+        X509Certificate certificate = (X509Certificate) keyStore1.getCertificate(keyAlias);
+        PrivateKey key = (PrivateKey) keyStore1.getKey(keyAlias, keyPassword.toCharArray());
+        SslContextBuilder sslContextBuilder = SslContextBuilder
+                .forClient()
+                .keyManager(key, certificate);
+
+        return sslContextBuilder.build();
     }
 
     protected KeyStore getStore(final URL url, final char[] password) throws

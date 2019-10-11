@@ -22,6 +22,10 @@
 
     <dependencies>
         <dependency>
+            <groupId>org.springframework.boot</groupId>
+            <artifactId>spring-boot-starter-webflux</artifactId>
+        </dependency>
+        <dependency>
             <groupId>com.forgerock</groupId>
             <artifactId>forgerock-eidas-psd2-cert-sdk</artifactId>
         </dependency>
