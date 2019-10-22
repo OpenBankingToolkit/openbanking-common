@@ -71,7 +71,4 @@ public interface CryptoApiClient {
 
     ValidDetachedJwtResponse validateDetachedJWSWithJWK(String jwsDetachedSignature, Object body, String expectedAudienceId, String expectedIssuerId, JWK jwk)
             throws InvalidTokenException, ParseException, IOException;
-
-    SignedJWT verifyAccessToken(String accessTokenBearer)
-            throws ParseException, InvalidTokenException, IOException;
 }
