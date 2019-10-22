@@ -9,8 +9,12 @@ package com.forgerock.openbanking.am.services;
 
 import com.forgerock.openbanking.am.config.AMOpenBankingConfiguration;
 import com.forgerock.openbanking.am.gateway.AMASPSPGateway;
+import com.forgerock.openbanking.jwt.exceptions.InvalidTokenException;
+import com.forgerock.openbanking.jwt.services.CryptoApiClient;
 import com.forgerock.openbanking.model.oidc.AccessTokenResponse;
 import com.forgerock.openbanking.model.oidc.OIDCRegistrationRequest;
+import com.nimbusds.jwt.JWTParser;
+import com.nimbusds.jwt.SignedJWT;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -21,6 +25,8 @@ import org.springframework.http.HttpMethod;
 import org.springframework.http.MediaType;
 import org.springframework.stereotype.Service;
 
+import java.io.IOException;
+import java.text.ParseException;
 import java.util.List;
 import java.util.stream.Collectors;
 
@@ -85,4 +91,5 @@ public class AMOIDCClient {
             }
         }
     }
+
 }
