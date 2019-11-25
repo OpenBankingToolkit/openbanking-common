@@ -182,9 +182,9 @@
     </repositories>
 
     <scm>
-        <connection>scm:git:https://github.com/ForgeRock/ob-common.git</connection>
-        <developerConnection>scm:git:https://github.com/ForgeRock/ob-common.git</developerConnection>
-        <url>https://github.com/ForgeRock/ob-common.git</url>
+        <connection>scm:git:https://github.com/ForgeRock/openbanking-common.git</connection>
+        <developerConnection>scm:git:https://github.com/ForgeRock/openbanking-common.git</developerConnection>
+        <url>https://github.com/ForgeRock/openbanking-common.git</url>
     <tag>HEAD</tag>
   </scm>
 

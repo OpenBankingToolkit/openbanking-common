@@ -28,7 +28,7 @@ jobs:
       with:
         access-token: ${{ secrets.ACCESS_TOKEN }}
         owner: forgerock
-        repo: ob-common
+        repo: openbanking-common
     - name: Release
       uses: qcastel/github-actions-maven-release@master
       with:
@@ -49,4 +49,4 @@ jobs:
       with:
         access-token: ${{ secrets.ACCESS_TOKEN }}
         owner: forgerock
-        repo: ob-common
+        repo: openbanking-common
