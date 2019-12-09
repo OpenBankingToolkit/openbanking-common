@@ -81,7 +81,7 @@ steps:
         type: build
         title: 'Build auth ui docker image'
         image_name: obri/auth
-        working-directory: ${{main_clone}}
+        working-directory: ${{main_clone}}/forgerock-openbanking-ui
         build_arguments:
           - BUILD_VERSION=${{BUILD_VERSION}}
         dockerfile: projects/auth/docker/Dockerfile
@@ -90,7 +90,7 @@ steps:
         type: build
         title: 'Build swagger ui docker image'
         image_name: obri/swagger-ui
-        working-directory: ${{main_clone}}
+        working-directory: ${{main_clone}}/forgerock-openbanking-ui
         build_arguments:
           - BUILD_VERSION=${{BUILD_VERSION}}
         dockerfile: projects/swagger/docker/Dockerfile
