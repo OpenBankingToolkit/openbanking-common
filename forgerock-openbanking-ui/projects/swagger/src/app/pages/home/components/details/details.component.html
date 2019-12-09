@@ -1,0 +1,63 @@
+<!-- {{ data | json }} -->
+<mat-card *ngIf="data">
+  <mat-card-header>
+    <mat-card-title>{{ data.summary }}</mat-card-title>
+    <mat-card-subtitle *ngIf="data.summary !== data.description">{{ data.description }}</mat-card-subtitle>
+    <mat-card-subtitle>
+      <mat-chip-list>
+        <mat-chip
+          [ngClass]="{
+            'mat-primary': data.method === 'get',
+            'mat-accent': data.method === 'post',
+            'mat-warn': data.method === 'delete'
+          }"
+          selected
+          >{{ data.method }}</mat-chip
+        >
+        {{ data.endpoint }}
+      </mat-chip-list></mat-card-subtitle
+    >
+  </mat-card-header>
+  <mat-card-content>
+    <ng-container *ngIf="data.parameters">
+      <h3>Parameters</h3>
+      <mat-list>
+        <ng-container *ngFor="let parameter of data.parameters">
+          <mat-list-item>
+            {{ parameter.name }} <small>({{ parameter.in }})</small>
+          </mat-list-item>
+          <mat-list-item>
+            <mat-chip-list mat-line>
+              <mat-chip *ngIf="parameter.type">{{ parameter.type }}</mat-chip>
+              <mat-chip *ngIf="parameter.required" color="warn" selected>Required</mat-chip>
+            </mat-chip-list>
+          </mat-list-item>
+          <mat-list-item class="wrap">
+            <p mat-line>{{ parameter.description }}</p>
+          </mat-list-item>
+          <mat-divider></mat-divider>
+        </ng-container>
+      </mat-list>
+    </ng-container>
+    <ng-container *ngIf="data.produces">
+      <h3>Response Type</h3>
+      <mat-list>
+        <mat-list-item *ngFor="let responseType of data.produces">
+          <h4 mat-line>{{ responseType }}</h4>
+          <mat-divider></mat-divider>
+        </mat-list-item>
+      </mat-list>
+    </ng-container>
+    <ng-container *ngIf="data.responses">
+      <h3>Responses</h3>
+      <mat-list>
+        <mat-list-item *ngFor="let response of data.responses | keyvalue">
+          <h4 mat-line>
+            {{ response.key }} <small>{{ response.value?.description }}</small>
+          </h4>
+          <mat-divider></mat-divider>
+        </mat-list-item>
+      </mat-list>
+    </ng-container>
+  </mat-card-content>
+</mat-card>

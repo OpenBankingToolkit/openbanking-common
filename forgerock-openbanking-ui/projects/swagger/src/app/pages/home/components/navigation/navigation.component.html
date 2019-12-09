@@ -1,0 +1,10 @@
+<mat-accordion>
+  <mat-expansion-panel *ngFor="let item of navigation | keyvalue">
+    <mat-expansion-panel-header>
+      <mat-panel-title> {{ item.key }}</mat-panel-title>
+    </mat-expansion-panel-header>
+    <button mat-button [routerLink]="nav.link" routerLinkActive="active" *ngFor="let nav of item.value">
+      {{ nav.name }}
+    </button>
+  </mat-expansion-panel>
+</mat-accordion>

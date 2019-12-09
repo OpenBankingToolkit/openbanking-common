@@ -1,0 +1,12 @@
+<mat-toolbar class="example-header">
+  <button mat-icon-button (click)="toggle()" *ngIf="mobileQuery.matches"><mat-icon>menu</mat-icon></button>
+  <forgerock-customer-icon></forgerock-customer-icon>
+</mat-toolbar>
+
+<mat-sidenav-container>
+  <mat-sidenav #sidenav [mode]="mobileQuery.matches ? 'over' : 'side'" [opened]="mobileQuery.matches ? isOpened : true">
+    <h3>API REFERENCE</h3>
+    <app-swagger-navigation [navigation]="navigation"></app-swagger-navigation>
+  </mat-sidenav>
+  <mat-sidenav-content> <app-swagger-details [data]="data"></app-swagger-details> </mat-sidenav-content>
+</mat-sidenav-container>
