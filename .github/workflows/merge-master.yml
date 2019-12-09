@@ -41,8 +41,6 @@ jobs:
       if: always()
       with:
         access-token: ${{ secrets.ACCESS_TOKEN }}
-        owner: OpenBankingToolkit
-        repo: openbanking-common
         enforce_admins: false
 
     - name: Release
@@ -67,8 +65,7 @@ jobs:
       if: always()
       with:
         access-token: ${{ secrets.ACCESS_TOKEN }}
-        owner: OpenBankingToolkit
-        repo: openbanking-common
+        enforce_admins: true
 
     - uses: codecov/codecov-action@v1
       with:
