@@ -1,6 +1,9 @@
-name: Deploy
+name: merge-master
 
-on: [push]
+on:
+  push:
+    branches:
+      - master
 
 jobs:
   build:
@@ -8,45 +11,65 @@ jobs:
 
     steps:
     - uses: actions/checkout@v1
+
     - name: Check Copyright
       uses: qcastel/github-actions-maven-cmd@master
       with:
-        maven-repo-server-id: forgerock-private-releases
-        maven-repo-server-username: ${{ secrets.FR_PRIVATE_REPO_USER }}
-        maven-repo-server-password: ${{ secrets.FR_PRIVATE_REPO_PASSWORD }}
         maven-args: "license:check"
+
     - name: Build and Test
       uses: qcastel/github-actions-maven-cmd@master
       with:
-        maven-repo-server-id: forgerock-private-releases
-        maven-repo-server-username: ${{ secrets.FR_PRIVATE_REPO_USER }}
-        maven-repo-server-password: ${{ secrets.FR_PRIVATE_REPO_PASSWORD }}
         maven-args: "verify"
+
+    - name: Create Package
+      uses: benjefferies/create-bintray-package@master
+      with:
+        bintray-user: openbankingtoolkit
+        bintray-token: ${{ secrets.BINTRAY_API_KEY }}
+
+        owner: openbanking-toolkit
+        repo: OpenBankingToolKit
+
+        package-name: openbanking-parent
+        package-description: Parent dependencies for all the openbanking-* repos
+        package-url: https://github.com/OpenBankingToolkit/openbanking-parent
+        package-license: Apache-2.0
+
     - name: Temporarily disable "include administrators" branch protection
       uses: benjefferies/branch-protection-bot@master
       if: always()
       with:
         access-token: ${{ secrets.ACCESS_TOKEN }}
-        owner: forgerock
-        repo: openbanking-common
+        owner: OpenBankingToolkit
+        repo: openbanking-parent
+        enforce_admins: false
+
     - name: Release
       uses: qcastel/github-actions-maven-release@master
       with:
-        release-branch-name: "master"
         gpg-enabled: "true"
         gpg-key-id: ${{ secrets.GITHUB_GPG_KEY_ID }}
         gpg-key: ${{ secrets.GITHUB_GPG_KEY }}
-        maven-repo-server-id: forgerock-private-releases
-        maven-repo-server-username: ${{ secrets.FR_PRIVATE_REPO_USER }}
-        maven-repo-server-password: ${{ secrets.FR_PRIVATE_REPO_PASSWORD }}
+
         maven-args: "-Dmaven.javadoc.skip=true -DskipTests -DskipITs -Ddockerfile.skip -DdockerCompose.skip"
+        maven-repo-server-id: bintray-openbankingtoolkit-OpenBankingToolkit
+        maven-repo-server-username: openbankingtoolkit
+        maven-repo-server-password: ${{ secrets.BINTRAY_API_KEY }}
+
         git-release-bot-name: "openbankbot"
         git-release-bot-email: "openbankbot@forgerock.com"
+
         access-token: ${{ secrets.ACCESS_TOKEN }}
+
     - name: Enable "include administrators" branch protection
       uses: benjefferies/branch-protection-bot@master
       if: always()
       with:
         access-token: ${{ secrets.ACCESS_TOKEN }}
-        owner: forgerock
-        repo: openbanking-common
+        owner: OpenBankingToolkit
+        repo: openbanking-parent
+
+    - uses: codecov/codecov-action@v1
+      with:
+        token: ${{ secrets.CODECOV_TOKEN }}

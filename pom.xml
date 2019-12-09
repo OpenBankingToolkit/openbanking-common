@@ -1,6 +1,8 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!--
 
+    Copyright 2019 ForgeRock AS.
+
     Licensed to the Apache Software Foundation (ASF) under one
     or more contributor license agreements.  See the NOTICE file
     distributed with this work for additional information
@@ -31,7 +33,7 @@
     <parent>
         <groupId>com.forgerock.openbanking</groupId>
         <artifactId>forgerock-openbanking-starter-parent</artifactId>
-        <version>1.0.31</version>
+        <version>1.0.52</version>
         <relativePath />
     </parent>
 
@@ -169,23 +171,17 @@
 
     <repositories>
         <repository>
-            <id>forgerock-private-releases</id>
-            <name>ForgeRock Private Releases Repository</name>
-            <url>http://maven.forgerock.org/repo/private-releases</url>
-            <snapshots>
-                <enabled>false</enabled>
-            </snapshots>
-            <releases>
-                <enabled>true</enabled>
-            </releases>
+            <id>jcenter</id>
+            <url>https://jcenter.bintray.com/</url>
         </repository>
     </repositories>
 
+
     <scm>
-        <connection>scm:git:https://github.com/ForgeRock/openbanking-common.git</connection>
-        <developerConnection>scm:git:https://github.com/ForgeRock/openbanking-common.git</developerConnection>
-        <url>https://github.com/ForgeRock/openbanking-common.git</url>
-    <tag>HEAD</tag>
+        <connection>scm:git:https://github.com/OpenBankingToolkit/openbanking-common.git</connection>
+        <developerConnection>scm:git:https://github.com/OpenBankingToolkit/openbanking-common.git</developerConnection>
+        <url>https://github.com/OpenBankingToolkit/openbanking-common.git</url>
+        <tag>HEAD</tag>
   </scm>
 
     <distributionManagement>
