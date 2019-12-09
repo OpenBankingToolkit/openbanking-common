@@ -137,7 +137,7 @@ steps:
       - git config --global user.email "codefresh@codefresh.io"
       - git config --global user.name "Codefresh"
       - git add client_releases/master-dev/releases.json
-      - git commit --allow-empty -m "Bumping Analytics UI version ${{BUILD_VERSION}}"
+      - git commit --allow-empty -m "Bumping Auth & Swagger UI version ${{BUILD_VERSION}}"
       - git push https://${{GITHUB_USERNAME}}:${{GITHUB_ACCESS_TOKEN}}@github.com/ForgeCloud/ob-deploy.git "master"
     when:
       branch:
