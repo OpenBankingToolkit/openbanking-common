@@ -186,9 +186,9 @@
 
     <distributionManagement>
         <repository>
-            <id>forgerock-private-releases</id>
-            <name>ForgeRock Private Releases Repository</name>
-            <url>http://maven.forgerock.org/repo/private-releases</url>
+            <id>bintray-openbankingtoolkit-OpenBankingToolkit</id>
+            <name>OpenBankingToolkit Common</name>
+            <url>https://api.bintray.com/maven/openbanking-toolkit/OpenBankingToolKit/openbanking-common/;publish=1</url>
         </repository>
     </distributionManagement>
 
