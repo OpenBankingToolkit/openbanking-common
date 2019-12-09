@@ -42,7 +42,7 @@ jobs:
       with:
         access-token: ${{ secrets.ACCESS_TOKEN }}
         owner: OpenBankingToolkit
-        repo: openbanking-parent
+        repo: openbanking-common
         enforce_admins: false
 
     - name: Release
@@ -68,7 +68,7 @@ jobs:
       with:
         access-token: ${{ secrets.ACCESS_TOKEN }}
         owner: OpenBankingToolkit
-        repo: openbanking-parent
+        repo: openbanking-common
 
     - uses: codecov/codecov-action@v1
       with:
