@@ -11,6 +11,6 @@
 _we recommend having a first read to_ https://github.com/OpenBankingToolkit/openbanking-toolkit**
 
 ForgeRock OpenBanking common
-==============================
+============================
 
 ForgeRock OpenBanking Commons is a set of abstractions and common classes used in different ForgeRock OpenBanking projects.
