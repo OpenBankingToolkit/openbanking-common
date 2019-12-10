@@ -33,7 +33,7 @@ jobs:
 
         package-name: openbanking-common
         package-description: Common dependencies for all the openbanking-* repos
-        package-url: https://github.com/OpenBankingToolkit/openbanking-common
+        package-url: https://github.com/OpenBankingToolkit/openbanking-commons
         package-license: Apache-2.0
 
     - name: Temporarily disable "include administrators" branch protection
