@@ -1,0 +1,35 @@
+@mixin swagger-home-details-theme($theme) {
+  $primary: map-get($theme, primary);
+  $accent: map-get($theme, accent);
+  $warn: map-get($theme, warn);
+  $background: map-get($theme, background);
+  $foreground: map-get($theme, foreground);
+
+  $headerBackgroundColor: mat-color($background, status-bar);
+  $headerSeparatorColor: mat-color($foreground, divider);
+  $headerColor: mat-color($foreground, text);
+
+  app-swagger-details {
+    mat-card-content {
+      padding: 20px 0 0 0;
+    }
+    h3 {
+      padding: 20px;
+      color: $headerColor;
+      background-color: $headerBackgroundColor;
+      border-bottom: 1px solid $headerSeparatorColor;
+    }
+    mat-list-item.wrap {
+      min-height: 48px;
+      height: auto !important;
+      > .mat-list-item-content {
+        min-height: 48px !important;
+        margin: 10px 0;
+      }
+      p {
+        white-space: normal !important;
+        word-break: break-all !important;
+      }
+    }
+  }
+}

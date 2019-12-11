@@ -1,0 +1,61 @@
+@mixin swagger-home-navigation-theme($theme) {
+  $primary: map-get($theme, primary);
+  $accent: map-get($theme, accent);
+  $warn: map-get($theme, warn);
+  $background: map-get($theme, background);
+  $foreground: map-get($theme, foreground);
+
+  $headerBackgroundColor: mat-color($background, background);
+  $headerSeparatorColor: mat-color($foreground, divider);
+  $headerColor: mat-color($foreground, text);
+  $buttonActiveBackgroundColor: mat-color($background, focused-button);
+
+  app-swagger-navigation {
+    display: block;
+
+    mat-expansion-panel-header {
+      padding: 10px;
+      margin: 10px 0;
+      color: $headerColor;
+      background-color: $headerBackgroundColor;
+      border-bottom: 1px solid $headerSeparatorColor;
+      text-transform: uppercase;
+      font-weight: bold;
+    }
+
+    mat-expansion-panel-body {
+      padding: 0;
+    }
+
+    mat-expansion-panel {
+      box-shadow: none !important;
+      * {
+        box-shadow: none;
+      }
+      margin: 0;
+      mat-expansion-panel-header {
+        margin: 0;
+        .mat-expansion-indicator {
+          margin-right: 10px;
+        }
+      }
+      .mat-expansion-panel-content {
+        border-left-width: 3px;
+        border-left-style: solid;
+        border-left-color: mat-color($accent);
+      }
+      .mat-expansion-panel-body {
+        padding: 13px;
+      }
+    }
+
+    button {
+      width: 100%;
+      text-align: left !important;
+      white-space: normal !important;
+      &.active {
+        background-color: $buttonActiveBackgroundColor;
+      }
+    }
+  }
+}

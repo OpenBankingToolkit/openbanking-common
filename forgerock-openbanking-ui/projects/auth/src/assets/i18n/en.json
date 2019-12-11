@@ -1,0 +1,64 @@
+{
+  "HELLO": "Hello",
+  "SIGNIN": "Sign in",
+  "NEXT": "Next",
+  "SIGNUP": "Sign up",
+  "SIGNOUT": "Sign out",
+  "SIGNED_OUT": "You have been signed out",
+  "CREATE_ACCOUNT": "Create Account",
+  "GDPR": {
+    "TITLE": "Access denied",
+    "TEXT": "In order to use this application, you must comply with our cookie policy."
+  },
+  "REGISTER": {
+    "ALREADY_HAVE_ACCOUNT": "Alread have an account?",
+    "FORM_CONFIRM": "Your changes have not been saved yet. Are you sure you want to leave?",
+    "SUCCESS": "Your account has been successfully registered."
+  },
+  "404": "The page you are looking for does not exist",
+  "NAV": {
+    "PROFILE": "Profile",
+    "SECURITY": "Security"
+  },
+  "PROFILE": {
+    "DETAILS": {
+      "TITLE": "Profile"
+    },
+    "PASSWORD": {
+      "TITLE": "Security"
+    },
+    "UPDATE_SUCCESS": "Your profile has been updated.",
+    "UPDATE_ERROR": "Could not save profile information",
+    "PASSWORD_UPDATE_SUCCESS": "Your password has been updated.",
+    "PASSWORD_UPDATE_ERROR": "Could not update password"
+  },
+  "STAGES": {
+    "DataStore1": {
+      "TITLE": "Sign in",
+      "DONT_HAVE_ACCOUNT": "New here?"
+    },
+    "AuthenticatorPushRegistration2": {
+      "TITLE": "Set up 2-step verification",
+      "SUBTITLE": "Secure your account by setting up 2-step authentication with your mobile device."
+    },
+    "AuthenticatorPushRegistration3": {
+      "TITLE": "Get the {{clientName}} app",
+      "SUBTITLE": "To continue you need to first install the {{clientName}} app.",
+      "SUBMIT": "Continue"
+    },
+    "AuthenticatorPushRegistration4": {
+      "TITLE": "Register a device",
+      "LOADING": "Waiting for you to scan"
+    },
+    "AuthenticatorPush3": {
+      "TITLE": "P2-step verification",
+      "SUBTITLE": "Open the {{clientName}} app on your mobile device and tap ‘authorise’ to continue.",
+      "LOADING": "Waiting for your mobile..."
+    },
+    "AuthenticatorPush4": {
+      "TITLE": "Push authentication - Recovery code",
+      "DONT_HAVE_CODE": "Don’t have a code?",
+      "CONTACT": "Contact your administrator"
+    }
+  }
+}
