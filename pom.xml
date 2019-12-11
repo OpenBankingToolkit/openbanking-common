@@ -75,7 +75,7 @@
         <minimal-json.version>0.9.5</minimal-json.version>
         <jmockdata.version>3.1.0</jmockdata.version>
         <docker-compose-rule-junit4.version>0.32.0</docker-compose-rule-junit4.version>
-        <docker-compose-maven-plugin.version>2.2.0</docker-compose-maven-plugin.version>
+        <docker-compose-maven-plugin.version>2.5.1</docker-compose-maven-plugin.version>
         <jackson-datatype-joda.version>2.9.7</jackson-datatype-joda.version>
         <maven-surefire-plugin.version>2.22.1</maven-surefire-plugin.version>
         <google-cloud-logging-logback-version>0.73.0-alpha</google-cloud-logging-logback-version>
