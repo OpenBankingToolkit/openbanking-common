@@ -23,7 +23,7 @@ jobs:
         working-directory: ./forgerock-openbanking-ui
         run: |
           mkdir -p artifact
-          "$(jq -r ".project_version" package.json)-$GITHUB_SHA" > artifact/version.txt
+          echo "$(jq -r ".project_version" package.json)-$GITHUB_SHA::7" > artifact/version.txt
           cat artifact/version.txt
       - uses: actions/upload-artifact@v1
         with:
