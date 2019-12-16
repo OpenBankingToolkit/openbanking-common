@@ -22,7 +22,7 @@ ENV TEMPLATE ""
 ENV ENABLE_CUSTOMIZATION "false"
 
 RUN rm -rf /etc/nginx/conf.d
-COPY --from=build-ui /src/dist /usr/share/nginx
+RUN cp /src/dist /usr/share/nginx
 COPY projects/auth/docker/nginx.conf /etc/nginx/conf.d/default.conf
 COPY projects/auth/docker/start.sh /opt/start.sh
 
