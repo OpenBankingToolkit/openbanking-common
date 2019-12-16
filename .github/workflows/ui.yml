@@ -38,7 +38,7 @@ jobs:
       - name: Build & Publish to Registry
         uses: elgohr/Publish-Docker-Github-Action@master
         with:
-          name: ${{ format('obri/auth:{0}', $BUILD_VERSION }}
+          name: ${{ format('obri/auth:{0}', $BUILD_VERSION) }}
           workdir: ./forgerock-openbanking-ui
           dockerfile: projects/auth/docker/Dockerfile
           registry: r.cfcr.io
