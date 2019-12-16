@@ -5,7 +5,7 @@ import _set from 'lodash-es/set';
 import _forEach from 'lodash-es/forEach';
 import _kebabCase from 'lodash-es/kebabCase';
 
-import { ForgerockConfigService } from 'ob-ui-libs/services/forgerock-config';
+import { ForgerockConfigService } from '@forgerock/openbanking-ngx-common/services/forgerock-config';
 import { ISwaggerNavigation, ISwaggerJSON, ISwaggerEndpointItem } from '../models/swagger';
 
 @Injectable({

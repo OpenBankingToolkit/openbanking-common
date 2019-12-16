@@ -12,7 +12,7 @@ import { MatToolbarModule } from '@angular/material/toolbar';
 import { HomeRoutingModule } from './home-routing.module';
 import { HomeComponent } from './home.component';
 import { NavigationComponent } from './components/navigation/navigation.component';
-import { ForgerockSharedModule } from 'ob-ui-libs/shared';
+import { ForgerockSharedModule } from '@forgerock/openbanking-ngx-common/shared';
 import { DetailsComponent } from './components/details/details.component';
 
 @NgModule({

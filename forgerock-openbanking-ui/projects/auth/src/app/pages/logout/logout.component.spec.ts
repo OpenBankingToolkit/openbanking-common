@@ -8,7 +8,7 @@ import rootReducer from 'auth/src/store';
 import { MatSharedModule } from 'auth/src/app/mat-shared.module';
 import { TranslateSharedModule } from 'auth/src/app/translate-shared.module';
 import { LogoutRoutingModule } from './logout-routing.module';
-import { ForgerockCustomerLogoModule } from 'ob-ui-libs/components/forgerock-customer-logo';
+import { ForgerockCustomerLogoModule } from '@forgerock/openbanking-ngx-common/components/forgerock-customer-logo';
 import { AppRoutingModule } from '../../app-routing.module';
 
 import { LogoutComponent } from './logout.component';
