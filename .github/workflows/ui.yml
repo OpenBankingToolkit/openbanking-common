@@ -39,7 +39,7 @@ jobs:
       - name: Checkout Repo
         uses: actions/checkout@master
       - name: Build & Publish to Registry
-        uses: Helgohr/Publish-Docker-Github-Action@master
+        uses: elgohr/Publish-Docker-Github-Action@master
         with:
           name: obri/auth
           workdir: ./forgerock-openbanking-ui
@@ -54,7 +54,7 @@ jobs:
       - name: Checkout Repo
         uses: actions/checkout@master
       - name: Build & Publish to Registry
-        uses: Helgohr/Publish-Docker-Github-Action@master
+        uses: elgohr/Publish-Docker-Github-Action@master
         with:
           name: obri/swagger-ui
           workdir: ./forgerock-openbanking-ui
