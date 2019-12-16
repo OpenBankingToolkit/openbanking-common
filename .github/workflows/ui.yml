@@ -31,7 +31,8 @@ jobs:
     steps:
       - name: Checkout Repo
         uses: actions/checkout@master
-      - run: export BUILD_VERSION="$(jq -r ".project_version" package.json)-${GITHUB_SHA::7}"
+      - working-directory: ./forgerock-openbanking-ui
+        run: export BUILD_VERSION="$(jq -r ".project_version" package.json)-${GITHUB_SHA::7}"
       - run: echo $BUILD_VERSION
       - name: Build & Publish to Registry
         uses: elgohr/Publish-Docker-Github-Action@master
@@ -48,16 +49,13 @@ jobs:
     steps:
       - name: Checkout Repo
         uses: actions/checkout@master
-      - name: Download Artifact
-        uses: actions/download-artifact@v1
-        with:
-          name: artifact
-      - run: export BUILD_VERSION=$(cat artifact/version.txt)
+      - working-directory: ./forgerock-openbanking-ui
+        run: export BUILD_VERSION="$(jq -r ".project_version" package.json)-${GITHUB_SHA::7}"
       - run: echo $BUILD_VERSION
       - name: Build & Publish to Registry
         uses: elgohr/Publish-Docker-Github-Action@master
         with:
-          name: obri/swagger-ui:$BUILD_VERSION
+          name: obri/swagger-ui:${BUILD_VERSION}
           workdir: ./forgerock-openbanking-ui
           dockerfile: projects/swagger/docker/Dockerfile
           registry: r.cfcr.io
