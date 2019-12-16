@@ -5,8 +5,6 @@ on: [push]
 env:
   GITHUB_ACCESS_TOKEN: ${{ secrets.ACCESS_TOKEN }}
   GITHUB_SHA: ${{ github.sha }}
-  CODEFRESH_DOCKER_REGISTRY_API_KEY: ${{ secrets.CODEFRESH_DOCKER_REGISTRY_API_KEY }}
-  CODEFRESH_DOCKER_REGISTRY_USERNAME: ${{ secrets.CODEFRESH_DOCKER_REGISTRY_USERNAME }}
 
 jobs:
   prepare:
@@ -46,8 +44,8 @@ jobs:
           name: obri/auth
           dockerfile: projects/auth/docker/Dockerfile
           registry: r.cfcr.io
-          username: $CODEFRESH_DOCKER_REGISTRY_USERNAME
-          password: $CODEFRESH_DOCKER_REGISTRY_API_KEY
+          username: ${{ secrets.CODEFRESH_DOCKER_REGISTRY_USERNAME }}
+          password: ${{ secrets.CODEFRESH_DOCKER_REGISTRY_API_KEY }}
   build_swagger:
     runs-on: ubuntu-latest
     needs: prepare
@@ -60,5 +58,5 @@ jobs:
           name: obri/swagger-ui
           dockerfile: projects/swagger/docker/Dockerfile
           registry: r.cfcr.io
-          username: $CODEFRESH_DOCKER_REGISTRY_USERNAME
-          password: $CODEFRESH_DOCKER_REGISTRY_API_KEY
+          username: ${{ secrets.CODEFRESH_DOCKER_REGISTRY_USERNAME }}
+          password: ${{ secrets.CODEFRESH_DOCKER_REGISTRY_API_KEY }}
