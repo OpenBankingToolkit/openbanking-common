@@ -42,7 +42,7 @@ jobs:
         uses: HurricanKai/Publish-Docker-Github-Action@master
         with:
           name: obri/auth
-          dockerfile: projects/auth/docker/Dockerfile
+          dockerfile: forgerock-openbanking-ui/projects/auth/docker/Dockerfile
           registry: r.cfcr.io
           username: ${{ secrets.CODEFRESH_DOCKER_REGISTRY_USERNAME }}
           password: ${{ secrets.CODEFRESH_DOCKER_REGISTRY_API_KEY }}
@@ -56,7 +56,7 @@ jobs:
         uses: HurricanKai/Publish-Docker-Github-Action@master
         with:
           name: obri/swagger-ui
-          dockerfile: projects/swagger/docker/Dockerfile
+          dockerfile: forgerock-openbanking-ui/projects/swagger/docker/Dockerfile
           registry: r.cfcr.io
           username: ${{ secrets.CODEFRESH_DOCKER_REGISTRY_USERNAME }}
           password: ${{ secrets.CODEFRESH_DOCKER_REGISTRY_API_KEY }}
