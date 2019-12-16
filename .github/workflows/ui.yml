@@ -55,7 +55,7 @@ jobs:
       - name: Build & Publish to Registry
         uses: elgohr/Publish-Docker-Github-Action@master
         with:
-          name: "obri/swagger-ui:${{BUILD_VERSION}}"
+          name: "obri/swagger-ui:${BUILD_VERSION}"
           workdir: ./forgerock-openbanking-ui
           dockerfile: projects/swagger/docker/Dockerfile
           registry: r.cfcr.io
