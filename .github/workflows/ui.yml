@@ -35,14 +35,10 @@ jobs:
         run: |
           export BUILD_VERSION=$(jq -r ".project_version" package.json)-${GITHUB_SHA::7}
           echo $BUILD_VERSION
-          echo "----"
-          echo "::set-env name=BUILD_VERSION::$(jq -r ".project_version" package.json)-${GITHUB_SHA::7}"
-          echo $BUILD_VERSION
-          echo "----"
       - name: Build & Publish to Registry
         uses: elgohr/Publish-Docker-Github-Action@master
         with:
-          name: obri/auth:$BUILD_VERSION
+          name: "obri/auth:$BUILD_VERSION"
           workdir: ./forgerock-openbanking-ui
           dockerfile: projects/auth/docker/Dockerfile
           registry: r.cfcr.io
@@ -55,13 +51,11 @@ jobs:
       - name: Checkout Repo
         uses: actions/checkout@master
       - working-directory: ./forgerock-openbanking-ui
-        run: |
-          echo "::set-env name=BUILD_VERSION::$(jq -r ".project_version" package.json)-${GITHUB_SHA::7}"
-          echo $BUILD_VERSION
+        run: export BUILD_VERSION=$(jq -r ".project_version" package.json)-${GITHUB_SHA::7}
       - name: Build & Publish to Registry
         uses: elgohr/Publish-Docker-Github-Action@master
         with:
-          name: obri/swagger-ui:${BUILD_VERSION}
+          name: "obri/swagger-ui:${BUILD_VERSION}"
           workdir: ./forgerock-openbanking-ui
           dockerfile: projects/swagger/docker/Dockerfile
           registry: r.cfcr.io
