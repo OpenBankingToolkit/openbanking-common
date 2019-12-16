@@ -1,5 +1,5 @@
 # Stage 1 - the build process
-FROM node:10
+FROM node:10 as build-ui
 
 WORKDIR /src
 ADD package.json package-lock.json /src/
@@ -22,7 +22,7 @@ ENV TEMPLATE ""
 ENV ENABLE_CUSTOMIZATION "false"
 
 RUN rm -rf /etc/nginx/conf.d
-RUN cp /src/dist /usr/share/nginx
+COPY --from=build-ui /src/dist /usr/share/nginx
 COPY projects/auth/docker/nginx.conf /etc/nginx/conf.d/default.conf
 COPY projects/auth/docker/start.sh /opt/start.sh
 
