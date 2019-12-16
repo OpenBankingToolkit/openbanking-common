@@ -41,7 +41,7 @@ jobs:
       - name: Build & Publish to Registry
         uses: elgohr/Publish-Docker-Github-Action@master
         with:
-          name: obri/auth
+          name: "obri/auth:GITHUB_SHA"
           workdir: ./forgerock-openbanking-ui
           dockerfile: projects/auth/docker/Dockerfile
           registry: r.cfcr.io
@@ -56,7 +56,7 @@ jobs:
       - name: Build & Publish to Registry
         uses: elgohr/Publish-Docker-Github-Action@master
         with:
-          name: obri/swagger-ui
+          name: "obri/swagger-ui:GITHUB_SHA"
           workdir: ./forgerock-openbanking-ui
           dockerfile: projects/swagger/docker/Dockerfile
           registry: r.cfcr.io
