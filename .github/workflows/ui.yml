@@ -22,10 +22,13 @@ jobs:
       - name: Prepare versionning
         working-directory: ./forgerock-openbanking-ui
         run: |
-          echo "::set-env name=PROJECT_VERSION::$(jq -r ".project_version" package.json)'"
-          echo "::set-env name=BUILD_VERSION::$PROJECT_VERSION-$GITHUB_SHA"
-          echo $PROJECT_VERSION
-          echo $BUILD_VERSION
+          mkdir -p artifact
+          "$(jq -r ".project_version" package.json)-$GITHUB_SHA" > artifact/version.txt
+          cat artifact/version.txt
+      - uses: actions/upload-artifact@v1
+        with:
+          name: artifact
+          path: artifact
       - name: Install Dependencies
         working-directory: ./forgerock-openbanking-ui
         run: |
@@ -38,7 +41,12 @@ jobs:
     steps:
       - name: Checkout Repo
         uses: actions/checkout@master
-      - run: echo "$BUILD_VERSION"
+      - name: Download Artifact
+        uses: actions/download-artifact@v1
+        with:
+          name: artifact
+      - run: export BUILD_VERSION=$(cat artifact/version.txt)
+      - run: echo $BUILD_VERSION
       - name: Build & Publish to Registry
         uses: elgohr/Publish-Docker-Github-Action@master
         with:
@@ -54,6 +62,12 @@ jobs:
     steps:
       - name: Checkout Repo
         uses: actions/checkout@master
+      - name: Download Artifact
+        uses: actions/download-artifact@v1
+        with:
+          name: artifact
+      - run: export BUILD_VERSION=$(cat artifact/version.txt)
+      - run: echo $BUILD_VERSION
       - name: Build & Publish to Registry
         uses: elgohr/Publish-Docker-Github-Action@master
         with:
