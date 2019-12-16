@@ -19,16 +19,6 @@ jobs:
           cp -r ./customers/lloyds ./customers/hl ./customers/westpac ./customers/jpmorgan ./customers/citibank ./customers/suncorp themes/
           ls -la ./themes
           rm -fr customers
-      - name: Prepare versionning
-        working-directory: ./forgerock-openbanking-ui
-        run: |
-          mkdir -p artifact
-          echo "$(jq -r ".project_version" package.json)-${GITHUB_SHA::7}" > artifact/version.txt
-          cat artifact/version.txt
-      - uses: actions/upload-artifact@v1
-        with:
-          name: artifact
-          path: artifact
       - name: Install Dependencies
         working-directory: ./forgerock-openbanking-ui
         run: |
@@ -41,11 +31,7 @@ jobs:
     steps:
       - name: Checkout Repo
         uses: actions/checkout@master
-      - name: Download Artifact
-        uses: actions/download-artifact@v1
-        with:
-          name: artifact
-      - run: export BUILD_VERSION=$(cat artifact/version.txt)
+      - run: export BUILD_VERSION="$(jq -r ".project_version" package.json)-${GITHUB_SHA::7}"
       - run: echo $BUILD_VERSION
       - name: Build & Publish to Registry
         uses: elgohr/Publish-Docker-Github-Action@master
