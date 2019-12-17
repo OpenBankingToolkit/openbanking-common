@@ -12,13 +12,22 @@ jobs:
     steps:
       - name: Checkout Repo
         uses: actions/checkout@master
+      - working-directory: ./forgerock-openbanking-ui
+        id: version
+        run: |
+          export BUILD_VERSION=$(jq -r ".project_version" package.json)-${GITHUB_SHA::7}
+          echo "::set-output name=BUILD_VERSION::$BUILD_VERSION"
       - name: Prepare customers
         working-directory: ./forgerock-openbanking-ui
         run: |
           git clone https://$GITHUB_ACCESS_TOKEN@github.com/ForgeCloud/ob-customers.git customers
           cp -r ./customers/lloyds ./customers/hl ./customers/westpac ./customers/jpmorgan ./customers/citibank ./customers/suncorp themes/
-          ls -la ./themes
-          rm -fr customers
+      - name: Archive Production Artifact
+        uses: actions/upload-artifact@master
+        with:
+          name: customers
+          path: customers
+      - run: rm -fr customers
       - name: Run tests
         working-directory: ./forgerock-openbanking-ui
         run: |
@@ -48,22 +57,10 @@ jobs:
     steps:
       - name: Checkout Repo
         uses: actions/checkout@master
-      - working-directory: ./forgerock-openbanking-ui
-        id: version
-        run: |
-          export BUILD_VERSION=$(jq -r ".project_version" package.json)-${GITHUB_SHA::7}
-          echo $BUILD_VERSION
-          echo "::set-env name=BUILD_VERSION::$BUILD_VERSION"
-          echo "::set-output name=BUILD_VERSION::$BUILD_VERSION"
-      # - name: Build & Publish to Registry
-      #   uses: elgohr/Publish-Docker-Github-Action@master
-      #   with:
-      #     name: $BUILD_VERSION
-      #     workdir: ./forgerock-openbanking-ui
-      #     dockerfile: projects/auth/docker/Dockerfile
-      #     registry: r.cfcr.io
-      #     username: ${{ secrets.CODEFRESH_DOCKER_REGISTRY_USERNAME }}
-      #     password: ${{ secrets.CODEFRESH_DOCKER_REGISTRY_API_KEY }}
+      - name: Download Artifact
+        uses: actions/download-artifact@master
+        with:
+          name: customers
       - uses: whoan/docker-build-with-cache-action@v2
         with:
           username: ${{ secrets.CODEFRESH_DOCKER_REGISTRY_USERNAME }}
