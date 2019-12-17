@@ -12,16 +12,11 @@ jobs:
     steps:
       - name: Checkout Repo
         uses: actions/checkout@master
-      - working-directory: ./forgerock-openbanking-ui
-        id: version
-        run: |
-          export BUILD_VERSION=$(jq -r ".project_version" package.json)-${GITHUB_SHA::7}
-          echo "::set-output name=BUILD_VERSION::$BUILD_VERSION"
       - name: Prepare customers
         working-directory: ./forgerock-openbanking-ui
         run: |
           git clone https://$GITHUB_ACCESS_TOKEN@github.com/ForgeCloud/ob-customers.git customers
-          cp -r ./customers/lloyds ./customers/hl ./customers/westpac ./customers/jpmorgan ./customers/citibank ./customers/suncorp themes/
+          cp -R ./customers/* themes/
       - name: Archive Production Artifact
         uses: actions/upload-artifact@master
         with:
@@ -34,29 +29,17 @@ jobs:
           npm ci
           npm run test.ci
           ./node_modules/@angular/cli/bin/ng lint
-      # - name: Build auth docker image
-      #   working-directory: ./forgerock-openbanking-ui
-      #   run: |
-      #     export BUILD_VERSION=$(jq -r ".project_version" package.json)-${GITHUB_SHA::7}
-      #     echo "Building docker image r.cfcr.io/openbanking/obri/auth:${BUILD_VERSION}"
-      #     docker login r.cfcr.io -u fropenbanking -p ${{ secrets.CODEFRESH_DOCKER_REGISTRY_API_KEY }}
-      #     docker build -f projects/auth/docker/Dockerfile -t r.cfcr.io/openbanking/obri/auth:$BUILD_VERSION .
-      #     docker push r.cfcr.io/openbanking/obri/auth:$BUILD_VERSION
-      # - name: Build swagger docker image
-      #   working-directory: ./forgerock-openbanking-ui
-      #   run: |
-      #     export BUILD_VERSION=$(jq -r ".project_version" package.json)-${GITHUB_SHA::7}
-      #     echo "Building docker image r.cfcr.io/openbanking/obri/swagger-ui:$BUILD_VERSION"
-      #     docker login r.cfcr.io -u fropenbanking -p ${{ secrets.CODEFRESH_DOCKER_REGISTRY_API_KEY }}
-      #     docker build -f projects/swagger/docker/Dockerfile -t r.cfcr.io/openbanking/obri/swagger-ui:$BUILD_VERSION .
-      #     docker push r.cfcr.io/openbanking/obri/swagger-ui:$BUILD_VERSION
-
   build_auth:
     runs-on: ubuntu-latest
     needs: prepare
     steps:
       - name: Checkout Repo
         uses: actions/checkout@master
+      - working-directory: ./forgerock-openbanking-ui
+        id: version
+        run: |
+          export BUILD_VERSION=$(jq -r ".project_version" package.json)-${GITHUB_SHA::7}
+          echo "::set-output name=BUILD_VERSION::$BUILD_VERSION"
       - name: Download Artifact
         uses: actions/download-artifact@master
         with:
@@ -70,4 +53,30 @@ jobs:
           image_tag: ${{ steps.version.outputs.BUILD_VERSION }}
           context: ./forgerock-openbanking-ui
           dockerfile: projects/auth/docker/Dockerfile
+          push_image_and_stages: false
+
+  build_swagger:
+    runs-on: ubuntu-latest
+    needs: prepare
+    steps:
+      - name: Checkout Repo
+        uses: actions/checkout@master
+      - working-directory: ./forgerock-openbanking-ui
+        id: version
+        run: |
+          export BUILD_VERSION=$(jq -r ".project_version" package.json)-${GITHUB_SHA::7}
+          echo "::set-output name=BUILD_VERSION::$BUILD_VERSION"
+      - name: Download Artifact
+        uses: actions/download-artifact@master
+        with:
+          name: customers
+      - uses: whoan/docker-build-with-cache-action@v2
+        with:
+          username: ${{ secrets.CODEFRESH_DOCKER_REGISTRY_USERNAME }}
+          password: "${{ secrets.CODEFRESH_DOCKER_REGISTRY_API_KEY }}"
+          registry: r.cfcr.io
+          image_name: obri/swagger-ui
+          image_tag: ${{ steps.version.outputs.BUILD_VERSION }}
+          context: ./forgerock-openbanking-ui
+          dockerfile: projects/swagger/docker/Dockerfile
           push_image_and_stages: false
