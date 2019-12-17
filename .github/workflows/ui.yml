@@ -31,7 +31,7 @@ jobs:
           export BUILD_VERSION=$(jq -r ".project_version" package.json)-${GITHUB_SHA::7}
           echo "Building docker image r.cfcr.io/openbanking/obri/auth:${BUILD_VERSION}"
           docker login r.cfcr.io -u fropenbanking -p ${{ secrets.CODEFRESH_DOCKER_REGISTRY_API_KEY }}
-          docker build -f projects/auth/docker/Dockerfile -t r.cfcr.io/openbanking/obri/auth:$BUILD_VERSION forgerock-openbanking-ui
+          docker build -f projects/auth/docker/Dockerfile -t r.cfcr.io/openbanking/obri/auth:$BUILD_VERSION .
           docker push r.cfcr.io/openbanking/obri/auth:$BUILD_VERSION
       - name: Build swagger docker image
         working-directory: ./forgerock-openbanking-ui
@@ -39,5 +39,5 @@ jobs:
           export BUILD_VERSION=$(jq -r ".project_version" package.json)-${GITHUB_SHA::7}
           echo "Building docker image r.cfcr.io/openbanking/obri/swagger-ui:$BUILD_VERSION"
           docker login r.cfcr.io -u fropenbanking -p ${{ secrets.CODEFRESH_DOCKER_REGISTRY_API_KEY }}
-          docker build -f projects/swagger/docker/Dockerfile -t r.cfcr.io/openbanking/obri/swagger-ui:$BUILD_VERSION forgerock-openbanking-ui
+          docker build -f projects/swagger/docker/Dockerfile -t r.cfcr.io/openbanking/obri/swagger-ui:$BUILD_VERSION .
           docker push r.cfcr.io/openbanking/obri/swagger-ui:$BUILD_VERSION
