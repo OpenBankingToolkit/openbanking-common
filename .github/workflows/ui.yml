@@ -44,6 +44,7 @@ jobs:
         uses: actions/download-artifact@master
         with:
           name: customers
+          path: forgerock-openbanking-ui/customers
       - uses: whoan/docker-build-with-cache-action@v2
         with:
           username: ${{ secrets.CODEFRESH_DOCKER_REGISTRY_USERNAME }}
@@ -70,6 +71,7 @@ jobs:
         uses: actions/download-artifact@master
         with:
           name: customers
+          path: forgerock-openbanking-ui/customers
       - uses: whoan/docker-build-with-cache-action@v2
         with:
           username: ${{ secrets.CODEFRESH_DOCKER_REGISTRY_USERNAME }}
