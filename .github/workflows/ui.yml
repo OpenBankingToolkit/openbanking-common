@@ -20,9 +20,7 @@ jobs:
           ./node_modules/@angular/cli/bin/ng lint
       - name: Prepare customers
         working-directory: ./forgerock-openbanking-ui
-        run: |
-          git clone https://$GITHUB_ACCESS_TOKEN@github.com/ForgeCloud/ob-customers.git customers
-          cp -R ./customers/* themes/
+        run: git clone https://$GITHUB_ACCESS_TOKEN@github.com/ForgeCloud/ob-customers.git customers
       - name: Archive Production Artifact
         uses: actions/upload-artifact@master
         with:
@@ -44,6 +42,8 @@ jobs:
         with:
           name: customers
           path: forgerock-openbanking-ui/customers
+      - working-directory: ./forgerock-openbanking-ui
+        run: cp -R ./customers/* themes/
       - working-directory: ./forgerock-openbanking-ui
         run: ls -la customers
       - uses: whoan/docker-build-with-cache-action@v2
@@ -74,7 +74,7 @@ jobs:
           name: customers
           path: forgerock-openbanking-ui/customers
       - working-directory: ./forgerock-openbanking-ui
-        run: ls -la customers
+        run: cp -R ./customers/* themes/
       - uses: whoan/docker-build-with-cache-action@v2
         with:
           username: ${{ secrets.CODEFRESH_DOCKER_REGISTRY_USERNAME }}
