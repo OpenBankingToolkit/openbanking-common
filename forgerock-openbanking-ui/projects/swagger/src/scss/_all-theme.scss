@@ -3,7 +3,7 @@
 // OVERWRITES SOME OF THE MAT COMPONENT MIXINS TO SUPPORT CSS VARS
 @import 'mixins/cssvars';
 @import 'projects/swagger/src/app/pages/home/home.component';
-@import '~ob-ui-libs/gdpr/main.scss';
+@import '~@forgerock/openbanking-ngx-common/gdpr/main.scss';
 
 @mixin forgerock-utils-theme($theme) {
   $foreground: map-get($theme, foreground);
