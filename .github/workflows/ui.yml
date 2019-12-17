@@ -52,7 +52,7 @@ jobs:
           password: "${{ secrets.CODEFRESH_DOCKER_REGISTRY_API_KEY }}"
           registry: r.cfcr.io
           image_name: obri/auth
-          image_tag: ${{ $BUILD_VERSION }}
+          image_tag: ${{ "$BUILD_VERSION" }}
           context: ./forgerock-openbanking-ui
           dockerfile: projects/auth/docker/Dockerfile
           push_image_and_stages: false
