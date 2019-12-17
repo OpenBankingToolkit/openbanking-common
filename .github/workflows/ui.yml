@@ -26,7 +26,7 @@ jobs:
         uses: actions/upload-artifact@master
         with:
           name: customers
-          path: customers
+          path: forgerock-openbanking-ui/customers
       - run: rm -fr customers
       - name: Run tests
         working-directory: ./forgerock-openbanking-ui
