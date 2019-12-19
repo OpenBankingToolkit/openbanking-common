@@ -9,13 +9,12 @@ on:
 env:
   GITHUB_ACCESS_TOKEN: ${{ secrets.ACCESS_TOKEN }}
   GITHUB_SHA: ${{ github.sha }}
-  BRANCH: ${{ github.ref }}
 
 jobs:
   prepare:
+    name: Prepare
     runs-on: ubuntu-latest
     steps:
-      - run: echo "::debug $BRANCH"
       - name: Checkout Repo
         uses: actions/checkout@v2
       - name: Run tests
@@ -33,6 +32,7 @@ jobs:
           name: customers
           path: forgerock-openbanking-ui/customers
   build_auth:
+    name: Build Auth App
     runs-on: ubuntu-latest
     needs: prepare
     steps:
@@ -59,6 +59,7 @@ jobs:
           docker build -f projects/auth/docker/Dockerfile -t r.cfcr.io/openbanking/obri/auth:$BUILD_VERSION .
           docker push r.cfcr.io/openbanking/obri/auth:$BUILD_VERSION
   build_swagger:
+    name: Build Swagger App
     runs-on: ubuntu-latest
     needs: prepare
     steps:
