@@ -87,7 +87,7 @@ jobs:
   update_ob_deploy:
     name: Update ob-deploy
     runs-on: ubuntu-latest
-    if: github.ref == 'master'
+    if: ${GITHUB_REF##*/} == 'master'
     needs: [build_auth, build_swagger]
     steps:
       - name: Checkout Repo
