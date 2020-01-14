@@ -5,6 +5,5 @@ module.exports = {
   },
   cookieDomain: '.DOMAIN',
   authenticationServer: 'https://am.DOMAIN',
-  directoryBackend: 'https://service.directory.DOMAIN/directory-services',
-  enableCustomization: 'ENABLE_CUSTOMIZATION'
+  directoryBackend: 'https://service.directory.DOMAIN/directory-services'
 };
