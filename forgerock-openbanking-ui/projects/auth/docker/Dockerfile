@@ -20,7 +20,7 @@ ENV BUILD_VERSION ${BUILD_VERSION}
 
 ENV TEMPLATE "forgerock"
 ENV DOMAIN ""
-ENV AUTH_SERVER_URL "https://am.DOMAIN"
+ENV AUTHENTICATION_URL "https://am.DOMAIN"
 ENV DIRECTORY_BACKEND_URL "https://service.directory.DOMAIN/directory-services"
 
 RUN rm -rf /etc/nginx/conf.d
