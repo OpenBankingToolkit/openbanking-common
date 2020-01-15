@@ -13,7 +13,7 @@ fi
 
 cp -r /usr/share/nginx/${TEMPLATE}/* /usr/share/nginx/html
 sed -i "s/BUILD_VERSION/${BUILD_VERSION}/g" /usr/share/nginx/html/deployment-settings.json
-sed -i "s/DOMAIN/${DOMAIN}/g" /usr/share/nginx/html/deployment-settings.json
 sed -i "s/TEMPLATE/${TEMPLATE}/g" /usr/share/nginx/html/deployment-settings.json
-sed -i "s/ENABLE_CUSTOMIZATION/${ENABLE_CUSTOMIZATION}/g" /usr/share/nginx/html/deployment-settings.json
+sed -i "s@SWAGGER_JSON_URL@${SWAGGER_JSON_URL}@g" /usr/share/nginx/html/deployment-settings.json
+sed -i "s/DOMAIN/${DOMAIN}/g" /usr/share/nginx/html/deployment-settings.json
 nginx -g 'daemon off;'

@@ -3,5 +3,5 @@ module.exports = {
     version: 'BUILD_VERSION',
     template: 'TEMPLATE'
   },
-  swaggerJSON: 'https://rs.aspsp.DOMAIN/api-docs'
+  swaggerJSON: 'SWAGGER_JSON_URL'
 };

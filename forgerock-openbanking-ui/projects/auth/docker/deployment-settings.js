@@ -4,6 +4,6 @@ module.exports = {
     template: 'TEMPLATE'
   },
   cookieDomain: '.DOMAIN',
-  authenticationServer: 'https://am.DOMAIN',
-  directoryBackend: 'https://service.directory.DOMAIN/directory-services'
+  authenticationServer: 'AUTH_SERVER_URL',
+  directoryBackend: 'DIRECTORY_BACKEND_URL'
 };

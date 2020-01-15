@@ -22,8 +22,7 @@ Then build the docker image
 ## Building your own docker image
 
 ```bash
-# Build Analytics
-docker build -t <IMAGE_NAME> -f projects/analytics/docker/Dockerfile .
-# Build Analytics Server
-docker build -t <IMAGE_NAME> -f projects/analytics/docker/Dockerfile-server .
+# Build
+docker build -t <IMAGE_NAME> -f projects/auth/docker/Dockerfile .
+docker build -t <IMAGE_NAME> -f projects/swagger/docker/Dockerfile .
 ```
