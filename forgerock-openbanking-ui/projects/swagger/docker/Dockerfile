@@ -17,8 +17,10 @@ EXPOSE 80
 
 ARG BUILD_VERSION
 ENV BUILD_VERSION ${BUILD_VERSION}
-ENV DOMAIN ""
+
 ENV TEMPLATE "forgerock"
+ENV DOMAIN ""
+ENV SWAGGER_JSON_URL "https://rs.aspsp.DOMAIN/api-docs"
 
 RUN rm -rf /etc/nginx/conf.d
 COPY --from=build-ui /src/dist /usr/share/nginx

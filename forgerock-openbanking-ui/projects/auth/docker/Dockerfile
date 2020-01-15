@@ -17,8 +17,11 @@ EXPOSE 80
 
 ARG BUILD_VERSION
 ENV BUILD_VERSION ${BUILD_VERSION}
-ENV DOMAIN ""
+
 ENV TEMPLATE "forgerock"
+ENV DOMAIN ""
+ENV AUTHENTICATION_URL "https://am.DOMAIN"
+ENV DIRECTORY_BACKEND_URL "https://service.directory.DOMAIN/directory-services"
 
 RUN rm -rf /etc/nginx/conf.d
 COPY --from=build-ui /src/dist /usr/share/nginx
