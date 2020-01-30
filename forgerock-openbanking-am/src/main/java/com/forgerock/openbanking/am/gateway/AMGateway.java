@@ -22,6 +22,7 @@ package com.forgerock.openbanking.am.gateway;
 
 import com.forgerock.openbanking.model.UserContext;
 import com.nimbusds.jose.util.Base64;
+import dev.openbanking4.spring.security.multiauth.model.authentication.X509Authentication;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.core.ParameterizedTypeReference;
 import org.springframework.http.HttpEntity;
@@ -95,12 +96,12 @@ public class AMGateway {
         httpHeaders.add(X_FORWARDED_PROTO, "https");
 
         if (SecurityContextHolder.getContext().getAuthentication() != null
-            && SecurityContextHolder.getContext().getAuthentication().getPrincipal() instanceof UserContext) {
-            UserContext userContext = (UserContext) SecurityContextHolder.getContext().getAuthentication().getPrincipal();
-            if (userContext.getCertificatesChain() != null
-                    && userContext.getCertificatesChain().length > 0) {
+            && SecurityContextHolder.getContext().getAuthentication() instanceof X509Authentication) {
+            X509Authentication x509Authentication = (X509Authentication) SecurityContextHolder.getContext().getAuthentication();
+            if (x509Authentication.getCertificateChain() != null
+                    && x509Authentication.getCertificateChain().length > 0) {
                 try {
-                    httpHeaders.add(trustedHeaderCertificate, Base64.encode(userContext.getCertificatesChain()[0].getEncoded()).toString());
+                    httpHeaders.add(trustedHeaderCertificate, Base64.encode(x509Authentication.getCertificateChain()[0].getEncoded()).toString());
                 } catch (CertificateEncodingException e) {
                     log.error("Could not convert X509 cert into a pem", e);
                 }
