@@ -35,8 +35,8 @@
 
     <dependencies>
         <dependency>
-            <groupId>com.forgerock.openbanking</groupId>
-            <artifactId>openbanking-sdk</artifactId>
+            <groupId>com.forgerock.openbanking.uk</groupId>
+            <artifactId>openbanking-uk-datamodel</artifactId>
         </dependency>
         <dependency>
             <groupId>org.springframework.cloud</groupId>
