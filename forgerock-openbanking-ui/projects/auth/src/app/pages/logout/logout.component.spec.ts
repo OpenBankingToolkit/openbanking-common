@@ -9,7 +9,6 @@ import { MatSharedModule } from 'auth/src/app/mat-shared.module';
 import { TranslateSharedModule } from 'auth/src/app/translate-shared.module';
 import { LogoutRoutingModule } from './logout-routing.module';
 import { ForgerockCustomerLogoModule } from '@forgerock/openbanking-ngx-common/components/forgerock-customer-logo';
-import { AppRoutingModule } from '../../app-routing.module';
 
 import { LogoutComponent } from './logout.component';
 
@@ -27,7 +26,6 @@ describe('app:auth LogoutComponent', () => {
         ForgerockCustomerLogoModule,
         StoreModule.forRoot(rootReducer),
         TranslateModule.forRoot(),
-        AppRoutingModule,
         RouterTestingModule.withRoutes([])
       ],
       declarations: [LogoutComponent]
