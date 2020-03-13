@@ -21,11 +21,11 @@ export const environment = {
   },
   featureFlags: {
     disableProfileForm: false,
-    disablePasswordForm: false
+    disablePasswordForm: false,
+    disableRegistration: false
   },
   routeDenyList: [],
-  devModules: [],
-  enableCustomization: 'true'
+  devModules: []
 };
 
 /*

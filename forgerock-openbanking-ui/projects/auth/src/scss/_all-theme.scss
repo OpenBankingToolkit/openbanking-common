@@ -6,6 +6,7 @@
 
 @import '~@forgerock/openbanking-ngx-common/layouts/main.scss';
 @import '~@forgerock/openbanking-ngx-common/gdpr/main.scss';
+@import '~@forgerock/openbanking-ngx-common/components/main.scss';
 
 @mixin foregrock-material-theme($theme) {
   // Including only the components that we use:
@@ -51,4 +52,5 @@
   @include forgerock-main-layout-theme($theme);
   @include forgerock-utils-theme($theme);
   @include forgerock-gdpr-theme($theme);
+  @include forgerock-alert-component-theme($theme);
 }
