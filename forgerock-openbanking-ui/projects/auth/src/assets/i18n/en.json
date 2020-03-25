@@ -32,6 +32,7 @@
     "PASSWORD_UPDATE_SUCCESS": "Your password has been updated.",
     "PASSWORD_UPDATE_ERROR": "Could not update password"
   },
+  "DONT_HAVE_ACCOUNT": "New here?",
   "STAGES": {
     "DataStore1": {
       "TITLE": "Sign in",
