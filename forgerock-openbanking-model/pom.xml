@@ -30,7 +30,7 @@
     <parent>
         <groupId>com.forgerock.openbanking</groupId>
         <artifactId>forgerock-openbanking-starter-commons</artifactId>
-        <version>1.0.75-SNAPSHOT</version>
+        <version>1.0.75</version>
     </parent>
 
     <dependencies>
