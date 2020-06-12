@@ -250,6 +250,10 @@ public enum OBRIErrorType {
             HttpStatus.BAD_REQUEST,
             OBStandardErrorCodes1.UK_OBIE_FIELD_INVALID,
             "The 'CreditorAccount.Identification' field for a Paym payment consent is must be a UK mobile phone number. It start with a county code [0 | 44 | 0044 | +44] and be followed a 10 digit number. This field is mandatory for a Paym payment and should identify the mobile number."),
+    PAYMENT_CODE_CONTEXT_INVALID(
+            HttpStatus.BAD_REQUEST,
+            OBStandardErrorCodes1.UK_OBIE_FIELD_INVALID,
+            "The 'OBRisk1.PaymentCodeContext' field must be set and be valid"),
 
     INVALID_CALLBACK_URL(
             HttpStatus.BAD_REQUEST,
