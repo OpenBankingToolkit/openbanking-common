@@ -38,11 +38,6 @@ jobs:
     steps:
       - name: Checkout Repo
         uses: actions/checkout@v2
-      - working-directory: ./forgerock-openbanking-ui
-        id: version
-        run: |
-          export BUILD_VERSION=$(jq -r ".project_version" package.json)-${GITHUB_SHA::7}
-          echo "::set-output name=BUILD_VERSION::$BUILD_VERSION"
       - name: Download Artifact
         uses: actions/download-artifact@master
         with:
@@ -53,12 +48,18 @@ jobs:
       - name: Build auth docker image
         working-directory: ./forgerock-openbanking-ui
         run: |
+          export REGISTRY=eu.gcr.io/openbanking-214714/obri/auth-ui
+          export PROJECT_VERSION_JSON=$(jq -r ".project_version" package.json)
+          export PROJECT_VERSION=$(mvn help:evaluate -Dexpression=project.version -q -DforceStdout)
           export BUILD_VERSION=$(jq -r ".project_version" package.json)-${GITHUB_SHA::7}
-          echo "Building docker image eu.gcr.io/openbanking-214714/obri/auth:${BUILD_VERSION}"
+          echo "Building docker image eu.gcr.io/openbanking-214714/obri/auth-ui:${BUILD_VERSION}"
           echo "${{ secrets.GCR_JSON_KEY_BASE64 }}" | base64 -d | docker login eu.gcr.io -u _json_key --password-stdin
-          docker build --build-arg BUILD_VERSION=$BUILD_VERSION -f projects/auth/docker/Dockerfile -t eu.gcr.io/openbanking-214714/obri/auth:latest -t eu.gcr.io/openbanking-214714/obri/auth:$BUILD_VERSION .
-          docker push eu.gcr.io/openbanking-214714/obri/auth:latest
-          docker push eu.gcr.io/openbanking-214714/obri/auth:$BUILD_VERSION
+          docker build --build-arg BUILD_VERSION=$BUILD_VERSION -f projects/auth/docker/Dockerfile \
+          -t $REGISTRY:latest -t $REGISTRY:$BUILD_VERSION -t $REGISTRY:$PROJECT_VERSION -t $REGISTRY:$PROJECT_VERSION_JSON .
+          docker push eu.gcr.io/openbanking-214714/obri/auth-ui:latest
+          docker push eu.gcr.io/openbanking-214714/obri/auth-ui:$PROJECT_VERSION_JSON
+          docker push eu.gcr.io/openbanking-214714/obri/auth-ui:$PROJECT_VERSION
+          docker push eu.gcr.io/openbanking-214714/obri/auth-ui:$BUILD_VERSION
   build_swagger:
     name: Build Swagger App
     runs-on: ubuntu-latest
@@ -66,11 +67,6 @@ jobs:
     steps:
       - name: Checkout Repo
         uses: actions/checkout@v2
-      - working-directory: ./forgerock-openbanking-ui
-        id: version
-        run: |
-          export BUILD_VERSION=$(jq -r ".project_version" package.json)-${GITHUB_SHA::7}
-          echo "::set-output name=BUILD_VERSION::$BUILD_VERSION"
       - name: Download Artifact
         uses: actions/download-artifact@master
         with:
@@ -81,11 +77,17 @@ jobs:
       - name: Build swagger docker image
         working-directory: ./forgerock-openbanking-ui
         run: |
+          export REGISTRY=eu.gcr.io/openbanking-214714/obri/swagger-ui
+          export PROJECT_VERSION_JSON=$(jq -r ".project_version" package.json)
+          export PROJECT_VERSION=$(mvn help:evaluate -Dexpression=project.version -q -DforceStdout)
           export BUILD_VERSION=$(jq -r ".project_version" package.json)-${GITHUB_SHA::7}
-          echo "Building docker image eu.gcr.io/openbanking-214714/obri/swagger-ui:${BUILD_VERSION}"
+          echo "Building docker image ${REGISTRY}:${BUILD_VERSION}"
           echo "${{ secrets.GCR_JSON_KEY_BASE64 }}" | base64 -d | docker login eu.gcr.io -u _json_key --password-stdin
-          docker build --build-arg BUILD_VERSION=$BUILD_VERSION -f projects/swagger/docker/Dockerfile -t eu.gcr.io/openbanking-214714/obri/swagger-ui:latest -t eu.gcr.io/openbanking-214714/obri/swagger-ui:$BUILD_VERSION .
+          docker build --build-arg BUILD_VERSION=$BUILD_VERSION -f projects/swagger/docker/Dockerfile \
+          -t $REGISTRY:latest -t $REGISTRY:$BUILD_VERSION -t $REGISTRY:$PROJECT_VERSION -t $REGISTRY:$PROJECT_VERSION_JSON .
           docker push eu.gcr.io/openbanking-214714/obri/swagger-ui:latest
+          docker push eu.gcr.io/openbanking-214714/obri/swagger-ui:$PROJECT_VERSION_JSON
+          docker push eu.gcr.io/openbanking-214714/obri/swagger-ui:$PROJECT_VERSION
           docker push eu.gcr.io/openbanking-214714/obri/swagger-ui:$BUILD_VERSION
   update_ob_deploy:
     name: Update ob-deploy
