@@ -14,3 +14,20 @@ ForgeRock OpenBanking common
 ============================
 
 ForgeRock OpenBanking Commons is a set of abstractions and common classes used in different ForgeRock OpenBanking projects.
+
+ForgeRock OpenBanking Commons also contains the UI apps for auth and swagger.
+
+## Forgerock openbanking UI Images
+- Auth UI: ./forgerock-openbanking-ui/projects/auth
+- Swagger UI: ./forgerock-openbanking-ui/projects/swagger
+
+## Build the project
+Maven build all artifacts included the below UI images:
+- auth-ui
+- swagger-ui
+```bash
+mvn clean install
+```
+```bash
+mvn clean install -DskipTests -DdockerCompose.skip
+```

@@ -1,31 +1,30 @@
 version: '3.7'
 services:
   auth:
-    image: eu.gcr.io/openbanking-214714/obri/auth:latest
+    image: eu.gcr.io/openbanking-214714/obri/auth-ui:latest
     ports:
       - "4203:443"
     environment:
-      DOMAIN: ui-integ.forgerock.financial
-      TEMPLATE: hsbc
+      DOMAIN: dev-ob.forgerock.financial
+      TEMPLATE: forgerock
       # The following env vars are all based on DOMAIN but can be set with any value (interesting locally with different ports)
       # AUTHENTICATION_URL: "https://am.DOMAIN"
       # DIRECTORY_BACKEND_URL: "https://service.directory.DOMAIN/directory-services"
     volumes:
-      - ./ssl/k-all.ui-integ.forgerock.financial.key:/etc/nginx/certs/ui-integ.forgerock.financial.key
-      - ./ssl/all.ui-integ.forgerock.financial.crt:/etc/nginx/certs/ui-integ.forgerock.financial.crt
-      - ./ssl/ui-integ.forgerock.financial.conf:/etc/nginx/conf.d/default.conf
+      - ./ssl/k-all.dev-ob.forgerock.financial.key:/etc/nginx/certs/dev-ob.forgerock.financial.key
+      - ./ssl/all.dev-ob.forgerock.financial.crt:/etc/nginx/certs/dev-ob.forgerock.financial.crt
+      - ./ssl/dev-ob.forgerock.financial.conf:/etc/nginx/conf.d/default.conf
   swagger-ui:
     image: eu.gcr.io/openbanking-214714/obri/bank-ui:latest
     ports:
       - "4205:443"
     environment:
-      DOMAIN: ui-integ.forgerock.financial
-      TEMPLATE: hsbc
+      DOMAIN: dev-ob.forgerock.financial
+      TEMPLATE: forgerock
       # The following env vars are all based on DOMAIN but can be set with any value (interesting locally with different ports)
       # SWAGGER_JSON_URL: "https://rs.aspsp.DOMAIN/api-docs"
     volumes:
-      - ./ssl/k-all.ui-integ.forgerock.financial.key:/etc/nginx/certs/ui-integ.forgerock.financial.key
-      - ./ssl/all.ui-integ.forgerock.financial.crt:/etc/nginx/certs/ui-integ.forgerock.financial.crt
-      - ./ssl/ui-integ.forgerock.financial.conf:/etc/nginx/conf.d/default.conf
+      - ./ssl/k-all.dev-ob.forgerock.financial.key:/etc/nginx/certs/dev-ob.forgerock.financial.key
+      - ./ssl/all.dev-ob.forgerock.financial.crt:/etc/nginx/certs/dev-ob.forgerock.financial.crt
+      - ./ssl/dev-ob.forgerock.financial.conf:/etc/nginx/conf.d/default.conf
 
-     

@@ -1,6 +1,6 @@
-## Running docker image
+## Running docker image manually
 
-<https://hub.docker.com/repository/docker/openbankingtoolkit/openbanking-auth-ui> & <https://hub.docker.com/repository/docker/openbankingtoolkit/openbanking-swagger-ui> are builds of the Auth & Swagger app with only the Forgerock theme.
+**auth-ui** & **swagger-ui** are builds of the Auth & Swagger app with only the Forgerock theme.
 
 It is convenient to start the app in no time.
 
@@ -13,6 +13,21 @@ docker run -it -p <PORT>:80 -e TEMPLATE=<TEMPLATE_NAME> -e DOMAIN=<DOMAIN> openb
 docker run -it -p <PORT>:80 -e TEMPLATE=<TEMPLATE_NAME> -e DOMAIN=<DOMAIN> openbankingtoolkit/openbanking-swagger-ui
 ```
 
+## Run Docker compose
+The UI apps depend on services:
+- Reference implementation services
+    - AUTHENTICATION_URL: "https://am.DOMAIN"
+    - DIRECTORY_BACKEND_URL: "https://service.directory.DOMAIN/directory-services"
+    
+> Run first the reference implementation spring boot apps
+
+Working Directory: ./forgerock-openbanking-ui
+```bash
+docker-compose up
+```
+```bash
+docker-compose -f [docker-compose-file] up
+```
 ## Building the app with your theme
 
 Create a new theme: <https://github.com/OpenBankingToolkit/openbanking-toolkit/wiki/Create-a-new-Theme>
@@ -20,7 +35,6 @@ Create a new theme: <https://github.com/OpenBankingToolkit/openbanking-toolkit/w
 Then build the docker image
 
 ## Building your own docker image
-
 ```bash
 # Build
 docker build -t <IMAGE_NAME> -f projects/auth/docker/Dockerfile .

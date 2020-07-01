@@ -85,15 +85,5 @@
                 <artifactId>write-text-files-maven-plugin</artifactId>
             </plugin>
         </plugins>
-        <resources>
-            <resource>
-                <directory>src/main/resources/unfiltered</directory>
-                <filtering>false</filtering>
-            </resource>
-            <resource>
-                <directory>src/main/resources/filtered</directory>
-                <filtering>true</filtering>
-            </resource>
-        </resources>
     </build>
 </project>
