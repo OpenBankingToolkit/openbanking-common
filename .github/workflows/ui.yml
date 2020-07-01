@@ -111,12 +111,12 @@ jobs:
       - name: Commit ob-deploy version update
         working-directory: ./ob-deploy
         run: |
-          jq -M  '[ .[] | if ((.service == "auth" or .service == "swagger-ui") and (.helmReference  | contains("obri-helm-charts/ui-template"))) then .version |= "${{ steps.version.outputs.BUILD_VERSION }}" else . end ]' client_releases/master-dev/releases.json > client_releases/master-dev/releases.json.tmp
+          jq -M  '[ .[] | if ((.service == "auth-ui" or .service == "swagger-ui") and (.helmReference  | contains("obri-helm-charts/ui-template"))) then .version |= "${{ steps.version.outputs.BUILD_VERSION }}" else . end ]' client_releases/master-dev/releases.json > client_releases/master-dev/releases.json.tmp
           mv client_releases/master-dev/releases.json.tmp client_releases/master-dev/releases.json
           git config --global user.email "codefresh@codefresh.io"
           git config --global user.name "Codefresh"
           git add client_releases/master-dev/releases.json
-          git commit --allow-empty -m "Bumping Auth & Swagger UI version ${{ steps.version.outputs.BUILD_VERSION }}"
+          git commit --allow-empty -m "Bumping Auth UI & Swagger UI version ${{ steps.version.outputs.BUILD_VERSION }}"
       - name: Temporarily disable "include administrators" protection
         uses: benjefferies/branch-protection-bot@master
         if: always()
