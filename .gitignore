@@ -1,0 +1,10 @@
+target/
+.project
+.classpath
+.settings
+.factorypath
+.vscode
+*.releaseBackup
+release.properties
+*.next
+*.tag
