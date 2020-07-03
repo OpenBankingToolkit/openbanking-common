@@ -1,7 +1,11 @@
 name: Build-UI
 
 on:
+  # Trigger the workflow on push
+  # Only for the master branch
   push:
+    branches:
+      - master
     paths:
       - ".github/workflows/ui.yml"
       - "forgerock-openbanking-ui/**"
