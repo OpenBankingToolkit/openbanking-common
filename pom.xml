@@ -55,7 +55,7 @@
         <module>forgerock-openbanking-oidc</module>
         <module>forgerock-openbanking-am</module>
         <module>forgerock-openbanking-jwt</module>
-        <!-- hack to build the docker image ui isn't a maven module -->
+        <!-- hack to build the docker image ui isn't a maven java module -->
         <module>forgerock-openbanking-ui</module>
     </modules>
 
