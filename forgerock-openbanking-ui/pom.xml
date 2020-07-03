@@ -60,6 +60,7 @@
             <configuration>
               <repository>eu.gcr.io/openbanking-214714/obri/auth-ui</repository>
               <dockerfile>projects/auth/docker/Dockerfile</dockerfile>
+              <skipBuild>false</skipBuild>
             </configuration>
           </execution>
           <execution>
@@ -70,11 +71,14 @@
             <configuration>
               <repository>eu.gcr.io/openbanking-214714/obri/swagger-ui</repository>
               <dockerfile>projects/swagger/docker/Dockerfile</dockerfile>
+              <skipBuild>false</skipBuild>
             </configuration>
           </execution>
         </executions>
         <configuration>
           <skipPush>true</skipPush>
+          <!-- skip build for the default build goal, enabled for specific executions auth-ui and swagger-ui -->
+          <skipBuild>true</skipBuild>
         </configuration>
       </plugin>
     </plugins>
