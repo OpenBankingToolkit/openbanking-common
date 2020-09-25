@@ -20,7 +20,7 @@
  */
 package com.forgerock.openbanking.model.claim;
 
-import net.minidev.json.JSONObject;
+import com.nimbusds.jose.shaded.json.JSONObject;
 
 import java.util.HashMap;
 import java.util.Map;

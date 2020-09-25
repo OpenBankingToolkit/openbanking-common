@@ -91,10 +91,6 @@
             <artifactId>joda-time</artifactId>
         </dependency>
         <dependency>
-            <groupId>net.minidev</groupId>
-            <artifactId>json-smart</artifactId>
-        </dependency>
-        <dependency>
             <groupId>junit</groupId>
             <artifactId>junit</artifactId>
             <scope>test</scope>

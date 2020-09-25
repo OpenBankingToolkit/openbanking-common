@@ -20,8 +20,8 @@
  */
 package com.forgerock.openbanking.model.claim;
 
-import net.minidev.json.JSONArray;
-import net.minidev.json.JSONObject;
+import com.nimbusds.jose.shaded.json.JSONArray;
+import com.nimbusds.jose.shaded.json.JSONObject;
 
 import java.util.ArrayList;
 import java.util.Arrays;
