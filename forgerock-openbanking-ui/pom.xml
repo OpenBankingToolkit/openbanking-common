@@ -34,7 +34,7 @@
   <parent>
     <groupId>com.forgerock.openbanking</groupId>
     <artifactId>forgerock-openbanking-starter-commons</artifactId>
-    <version>1.0.82</version>
+    <version>1.0.83-SNAPSHOT</version>
   </parent>
 
   <build>
