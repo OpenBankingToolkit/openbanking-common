@@ -49,8 +49,8 @@ public class SoftwareStatement {
     public Date created;
     @LastModifiedDate
     public Date updated;
-
     private String applicationId;
+    private String organisationId;
 
     public enum Mode {
         TEST, LIVE
@@ -200,4 +200,8 @@ public class SoftwareStatement {
     public void setApplicationId(String applicationId) {
         this.applicationId = applicationId;
     }
+
+    public String getOrganisationId() { return organisationId;}
+
+    public void setOrganisationId(String organisationId) {this.organisationId = organisationId;}
 }
