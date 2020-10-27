@@ -20,15 +20,20 @@
  */
 package com.forgerock.openbanking.model;
 
+import com.fasterxml.jackson.annotation.JsonProperty;
 import lombok.Data;
 import org.springframework.data.annotation.CreatedDate;
 import org.springframework.data.annotation.Id;
 import org.springframework.data.annotation.LastModifiedDate;
 import org.springframework.data.mongodb.core.mapping.Document;
 
-import java.util.*;
+import java.util.ArrayList;
+import java.util.Date;
+import java.util.HashSet;
+import java.util.List;
+import java.util.Set;
 
-
+@Data
 @Document
 public class SoftwareStatement {
     @Id
@@ -42,7 +47,6 @@ public class SoftwareStatement {
     private Mode mode;
     private Set<SoftwareStatementRole> roles;
     private Status status;
-
     private String policyUri;
     private String termsOfService;
     private List<String> redirectUris;
@@ -52,7 +56,6 @@ public class SoftwareStatement {
     public Date updated;
     private String applicationId;
 
-
     /**
      * The software ID is the same as the ForgeRock Application Id. It is included here to make logic simpler for
      * TPPS wishing to support message signing with both ForgeRock certificates and OB issued certificates. OB issued
@@ -60,21 +63,18 @@ public class SoftwareStatement {
      * iss field of a jws header (message signing header). Having both the software_id and org_id fields in the
      * ForgeRock software statement will make TPP and our own test logic easier when performing message signing.
      */
-    private String software_id;
+    @JsonProperty("software_id")
+    private String softwareId;
     /**
      * The organisation ID - this is the organisation in the ForgeRock directory under which this
      * application/software id has been created.
      */
-    private String org_id;
+    @JsonProperty("org_id")
+    private String organisationId;
 
-    public enum Mode {
-        TEST, LIVE
-    }
-
-    public enum Status {
-        ACTIVE, REVOKED
-    }
-
+    /**
+     * Default constructor. Sets the initial status and mode.
+     */
     public SoftwareStatement() {
         status = Status.ACTIVE;
 
@@ -88,147 +88,11 @@ public class SoftwareStatement {
         mode = Mode.TEST;
     }
 
-    public String getId() {
-        return id;
+    public enum Mode {
+        TEST, LIVE
     }
 
-    public void setId(String id) {
-        this.id = id;
-    }
-
-    public String getName() {
-        return name;
-    }
-
-    public void setName(String name) {
-        this.name = name;
-    }
-
-    public String getDescription() {
-        return description;
-    }
-
-    public void setDescription(String description) {
-        this.description = description;
-    }
-
-    public String getUri() {
-        return uri;
-    }
-
-    public void setUri(String uri) {
-        this.uri = uri;
-    }
-
-    public String getVersion() {
-        return version;
-    }
-
-    public void setVersion(String version) {
-        this.version = version;
-    }
-
-    public String getEnvironment() {
-        return environment;
-    }
-
-    public void setEnvironment(String environment) {
-        this.environment = environment;
-    }
-
-    public String getLogoUri() {
-        return logoUri;
-    }
-
-    public void setLogoUri(String logoUri) {
-        this.logoUri = logoUri;
-    }
-
-    public Mode getMode() {
-        return mode;
-    }
-
-    public void setMode(Mode mode) {
-        this.mode = mode;
-    }
-
-    public Set<SoftwareStatementRole> getRoles() {
-        return roles;
-    }
-
-    public void setRoles(Set<SoftwareStatementRole> roles) {
-        this.roles = roles;
-    }
-
-    public Status getStatus() {
-        return status;
-    }
-
-    public void setStatus(Status status) {
-        this.status = status;
-    }
-
-    public String getPolicyUri() {
-        return policyUri;
-    }
-
-    public void setPolicyUri(String policyUri) {
-        this.policyUri = policyUri;
-    }
-
-    public String getTermsOfService() {
-        return termsOfService;
-    }
-
-    public void setTermsOfService(String termsOfService) {
-        this.termsOfService = termsOfService;
-    }
-
-    public List<String> getRedirectUris() {
-        return redirectUris;
-    }
-
-    public void setRedirectUris(List<String> redirectUris) {
-        this.redirectUris = redirectUris;
-    }
-
-    public Date getCreated() {
-        return created;
-    }
-
-    public void setCreated(Date created) {
-        this.created = created;
-    }
-
-    public Date getUpdated() {
-        return updated;
-    }
-
-    public void setUpdated(Date updated) {
-        this.updated = updated;
-    }
-
-    public String getApplicationId() {
-        return applicationId;
-    }
-
-    public void setApplicationId(String applicationId) {
-        this.applicationId = applicationId;
-    }
-
-    public String getSoftware_id() {
-        return software_id;
-    }
-
-    public void setSoftware_id(String software_id) {
-        this.software_id = software_id;
-    }
-
-    public String getOrg_id() {
-        return org_id;
-    }
-
-    public void setOrg_id(String org_id) {
-        this.org_id = org_id;
+    public enum Status {
+        ACTIVE, REVOKED
     }
 }
