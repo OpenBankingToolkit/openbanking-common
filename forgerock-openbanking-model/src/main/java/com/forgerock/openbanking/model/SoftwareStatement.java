@@ -20,6 +20,7 @@
  */
 package com.forgerock.openbanking.model;
 
+import lombok.Data;
 import org.springframework.data.annotation.CreatedDate;
 import org.springframework.data.annotation.Id;
 import org.springframework.data.annotation.LastModifiedDate;
@@ -50,7 +51,21 @@ public class SoftwareStatement {
     @LastModifiedDate
     public Date updated;
     private String applicationId;
-    private String organisationId;
+
+
+    /**
+     * The software ID is the same as the ForgeRock Application Id. It is included here to make logic simpler for
+     * TPPS wishing to support message signing with both ForgeRock certificates and OB issued certificates. OB issued
+     * Software Statements contain software_id and org_id fields and specify that these values should be used in the
+     * iss field of a jws header (message signing header). Having both the software_id and org_id fields in the
+     * ForgeRock software statement will make TPP and our own test logic easier when performing message signing.
+     */
+    private String software_id;
+    /**
+     * The organisation ID - this is the organisation in the ForgeRock directory under which this
+     * application/software id has been created.
+     */
+    private String org_id;
 
     public enum Mode {
         TEST, LIVE
@@ -201,7 +216,19 @@ public class SoftwareStatement {
         this.applicationId = applicationId;
     }
 
-    public String getOrganisationId() { return organisationId;}
+    public String getSoftware_id() {
+        return software_id;
+    }
 
-    public void setOrganisationId(String organisationId) {this.organisationId = organisationId;}
+    public void setSoftware_id(String software_id) {
+        this.software_id = software_id;
+    }
+
+    public String getOrg_id() {
+        return org_id;
+    }
+
+    public void setOrg_id(String org_id) {
+        this.org_id = org_id;
+    }
 }
