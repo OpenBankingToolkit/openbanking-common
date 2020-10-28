@@ -25,10 +25,11 @@ import org.joda.time.DateTime;
 import org.springframework.data.mongodb.repository.MongoRepository;
 import org.springframework.data.repository.query.Param;
 import org.springframework.format.annotation.DateTimeFormat;
+import org.springframework.data.rest.core.annotation.RepositoryRestResource;
 
 import java.util.Collection;
 
-
+@RepositoryRestResource
 public interface TppRepository extends MongoRepository<Tpp, String> {
 
     Collection<Tpp> findByCertificateCn(@Param("certificateCn") String certificateCn);
