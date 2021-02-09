@@ -27,7 +27,7 @@
     <name>ForgeRock OpenBanking Reference Implementation - commons</name>
     <groupId>com.forgerock.openbanking</groupId>
     <artifactId>forgerock-openbanking-starter-commons</artifactId>
-    <version>1.0.87-SNAPSHOT</version>
+    <version>1.0.88-SNAPSHOT</version>
     <packaging>pom</packaging>
 
     <parent>
