@@ -65,6 +65,7 @@ public enum ErrorCode implements StandardErrorCode {
     OBRI_REQUEST_GLOBAL_OBJECT_INVALID("OBRI.Request.Object.Invalid"),
     OBRI_REQUEST_BINDING_FAILED("OBRI.Request.Binding.Failed"),
     OBRI_REQUEST_ARGUMENT_TYPE_MISMATCH("OBRI.Request.Arguments.Mismatch"),
+    OBRI_REQUEST_RESPONSE_TYPE_MISMATCH("OBRI.Request.ResponseType.Mismatch"),
     OBRI_REQUEST_METHOD_NOT_SUPPORTED("OBRI.Request.Method.NotSupported"),
     OBRI_REQUEST_MEDIA_TYPE_NOT_SUPPORTED("OBRI.Request.MediaType.NotSupported"),
     OBRI_REQUEST_MEDIA_TYPE_NOT_ACCEPTABLE("OBRI.Request.MediaType.NotAcceptable"),

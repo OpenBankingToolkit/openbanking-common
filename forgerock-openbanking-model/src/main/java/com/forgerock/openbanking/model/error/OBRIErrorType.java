@@ -461,6 +461,14 @@ public enum OBRIErrorType {
             HttpStatus.BAD_REQUEST,
             ErrorCode.OBRI_REQUEST_ARGUMENT_TYPE_MISMATCH,
             "The argument %s should be of type %s"),
+    REQUEST_RESPONSE_TYPE_MISMATCH(
+            HttpStatus.BAD_REQUEST,
+            ErrorCode.OBRI_REQUEST_RESPONSE_TYPE_MISMATCH,
+            "The response type '%s' is not supported. Supported response types are '%s'"),
+    DISCOVERY_RESPONSE_TYPE_MISMATCH(
+            HttpStatus.BAD_REQUEST,
+            ErrorCode.OBRI_REQUEST_RESPONSE_TYPE_MISMATCH,
+            "The response types supported by the authorisation server '%s' don't match with the response types supported '%s' by as-api"),
     REQUEST_METHOD_NOT_SUPPORTED(
             HttpStatus.BAD_REQUEST,
             ErrorCode.OBRI_REQUEST_METHOD_NOT_SUPPORTED,
