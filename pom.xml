@@ -33,7 +33,7 @@
     <parent>
         <groupId>com.forgerock.openbanking</groupId>
         <artifactId>forgerock-openbanking-starter-parent</artifactId>
-        <version>1.0.83</version>
+        <version>1.0.86</version>
         <relativePath />
     </parent>
 
@@ -55,8 +55,6 @@
         <module>forgerock-openbanking-oidc</module>
         <module>forgerock-openbanking-am</module>
         <module>forgerock-openbanking-jwt</module>
-        <!-- hack to build the docker image ui isn't a maven java module -->
-        <module>forgerock-openbanking-ui</module>
     </modules>
 
     <dependencyManagement>
