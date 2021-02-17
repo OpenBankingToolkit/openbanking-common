@@ -80,6 +80,7 @@ public class OpenBankingConstants {
         public static final String ACCOUNTS = "accounts";
         public static final String GROUP = "group";
         public static final String FUNDS_CONFIRMATIONS = "fundsconfirmations";
+        public static final String EVENT_POLLING = "eventpolling";
     }
 
     public static class ParametersFieldName {
