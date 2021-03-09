@@ -55,6 +55,7 @@
         <module>forgerock-openbanking-oidc</module>
         <module>forgerock-openbanking-am</module>
         <module>forgerock-openbanking-jwt</module>
+        <module>forgerock-openbanking-annotations</module>
     </modules>
 
     <dependencyManagement>
