@@ -1,0 +1,13 @@
+version: 2
+updates:
+- package-ecosystem: maven
+  directory: "/"
+  schedule:
+    interval: daily
+  open-pull-requests-limit: 10
+  ignore:
+  - dependency-name: com.forgerock.openbanking:forgerock-openbanking-starter-parent
+    versions:
+    - 1.0.86
+    - 1.1.87
+    - 1.1.88
