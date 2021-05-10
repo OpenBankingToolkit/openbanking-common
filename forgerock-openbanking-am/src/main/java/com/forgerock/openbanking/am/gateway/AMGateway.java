@@ -22,7 +22,7 @@ package com.forgerock.openbanking.am.gateway;
 
 import com.forgerock.openbanking.model.UserContext;
 import com.nimbusds.jose.util.Base64;
-import dev.openbanking4.spring.security.multiauth.model.authentication.X509Authentication;
+import com.forgerock.spring.security.multiauth.model.authentication.X509Authentication;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.core.ParameterizedTypeReference;
 import org.springframework.http.HttpEntity;

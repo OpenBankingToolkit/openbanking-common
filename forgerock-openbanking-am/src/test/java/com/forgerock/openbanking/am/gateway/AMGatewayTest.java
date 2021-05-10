@@ -21,7 +21,7 @@
 package com.forgerock.openbanking.am.gateway;
 
 
-import dev.openbanking4.spring.security.multiauth.model.authentication.X509Authentication;
+import com.forgerock.spring.security.multiauth.model.authentication.X509Authentication;
 import org.junit.Before;
 import org.junit.Test;
 import org.junit.runner.RunWith;
