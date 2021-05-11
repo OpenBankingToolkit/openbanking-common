@@ -20,6 +20,13 @@
  */
 package com.forgerock.openbanking.constants;
 
+import com.forgerock.openbanking.model.error.UnsupportedOIDCAuthMethodsException;
+import com.forgerock.openbanking.model.error.UnsupportedOIDCGrantTypeException;
+
+import java.util.List;
+import java.util.stream.Collectors;
+import java.util.stream.Stream;
+
 /**
  * All the constants defined by the OIDC standard.
  */
@@ -43,9 +50,13 @@ public class OIDCConstants {
         CLIENT_SECRET_BASIC("client_secret_basic"),
         CLIENT_SECRET_JWT("client_secret_jwt"),
         TLS_CLIENT_AUTH("tls_client_auth"),
-        PRIVATE_KEY_JWT("private_key_jwt"),
-        ;
+        PRIVATE_KEY_JWT("private_key_jwt");
+
         public final String type;
+
+        private String getType() {
+            return type;
+        }
 
         TokenEndpointAuthMethods(String type) {
             this.type = type;
@@ -57,7 +68,13 @@ public class OIDCConstants {
                     return tokenEndpointAuthMethods;
                 }
             }
-            throw new IllegalArgumentException("Type '" + type + "' doesn't match any of the token endpoint auth methods");
+            throw new UnsupportedOIDCAuthMethodsException("Type '" + type + "' doesn't match any of the token endpoint auth methods " + TokenEndpointAuthMethods.getAllTypes());
+        }
+
+        public static List<String> getAllTypes() {
+            return Stream.of(GrantType.values()).
+                    map(GrantType::getType).
+                    collect(Collectors.toList());
         }
     }
 
@@ -73,9 +90,13 @@ public class OIDCConstants {
         AUTHORIZATION_CODE("authorization_code"),
         PASSWORD("password"),
         REFRESH_TOKEN("refresh_token"),
-        HEADLESS_AUTH("headless_auth"),
-        ;
+        HEADLESS_AUTH("headless_auth");
+
         public final String type;
+
+        private String getType() {
+            return type;
+        }
 
         GrantType(String type) {
             this.type = type;
@@ -87,7 +108,13 @@ public class OIDCConstants {
                     return grantType;
                 }
             }
-            throw new IllegalArgumentException("Type '" + type + "' doesn't match any of the grant type");
+            throw new UnsupportedOIDCGrantTypeException("Type '" + type + "' doesn't match any of the grant types " + GrantType.getAllTypes() + " defined.");
+        }
+
+        public static List<String> getAllTypes() {
+            return Stream.of(GrantType.values()).
+                    map(GrantType::getType).
+                    collect(Collectors.toList());
         }
     }
 
