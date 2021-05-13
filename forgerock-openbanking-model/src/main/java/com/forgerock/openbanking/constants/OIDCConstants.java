@@ -22,6 +22,7 @@ package com.forgerock.openbanking.constants;
 
 import com.forgerock.openbanking.model.error.UnsupportedOIDCAuthMethodsException;
 import com.forgerock.openbanking.model.error.UnsupportedOIDCGrantTypeException;
+import lombok.extern.slf4j.Slf4j;
 
 import java.util.List;
 import java.util.stream.Collectors;
@@ -30,17 +31,23 @@ import java.util.stream.Stream;
 /**
  * All the constants defined by the OIDC standard.
  */
+@Slf4j
 public class OIDCConstants {
 
-    private OIDCConstants() {}
+    private OIDCConstants() {
+    }
 
     public static class Endpoint {
-        private Endpoint() {}
+        private Endpoint() {
+        }
+
         public static final String WELL_KNOWN = ".well-known/openid-configuration";
     }
 
     public static class SubjectType {
-        private SubjectType() {}
+        private SubjectType() {
+        }
+
         public static final String PUBLIC = "public";
         public static final String PAIRWISE = "pairwise";
     }
@@ -68,6 +75,10 @@ public class OIDCConstants {
                     return tokenEndpointAuthMethods;
                 }
             }
+            log.error("Type '{}' doesn't match any of the token endpoint auth methods {}, Caller {}",
+                    type,
+                    TokenEndpointAuthMethods.getAllTypes(),
+                    StackWalker.getInstance(StackWalker.Option.RETAIN_CLASS_REFERENCE).getCallerClass().getCanonicalName());
             throw new UnsupportedOIDCAuthMethodsException("Type '" + type + "' doesn't match any of the token endpoint auth methods " + TokenEndpointAuthMethods.getAllTypes());
         }
 
@@ -79,7 +90,9 @@ public class OIDCConstants {
     }
 
     public static class ResponseType {
-        private ResponseType() {}
+        private ResponseType() {
+        }
+
         public static final String CODE = "code";
         public static final String ID_TOKEN = "id_token";
         public static final String TOKEN = "token";
@@ -108,6 +121,10 @@ public class OIDCConstants {
                     return grantType;
                 }
             }
+            log.error("Type '{}' doesn't match any of the grant types {} defined. Caller {}",
+                    type,
+                    GrantType.getAllTypes(),
+                    StackWalker.getInstance(StackWalker.Option.RETAIN_CLASS_REFERENCE).getCallerClass().getCanonicalName());
             throw new UnsupportedOIDCGrantTypeException("Type '" + type + "' doesn't match any of the grant types " + GrantType.getAllTypes() + " defined.");
         }
 
@@ -119,7 +136,9 @@ public class OIDCConstants {
     }
 
     public static class OIDCClaim {
-        private OIDCClaim() {}
+        private OIDCClaim() {
+        }
+
         public static final String GRANT_TYPE = "grant_type";
         public static final String ID_TOKEN = "id_token";
         public static final String USER_INFO = "userinfo";
