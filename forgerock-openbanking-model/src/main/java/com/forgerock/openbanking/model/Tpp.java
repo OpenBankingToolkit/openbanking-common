@@ -27,6 +27,7 @@ import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Data;
 import lombok.NoArgsConstructor;
+import org.apache.commons.codec.binary.StringUtils;
 import org.springframework.data.annotation.CreatedDate;
 import org.springframework.data.annotation.Id;
 import org.springframework.data.annotation.LastModifiedDate;
@@ -36,6 +37,7 @@ import org.springframework.data.mongodb.core.mapping.Document;
 import java.text.ParseException;
 import java.util.Date;
 import java.util.HashSet;
+import java.util.Optional;
 import java.util.Set;
 
 
@@ -80,5 +82,15 @@ public class Tpp {
             }
         }
         return null;
+    }
+
+    public Optional<String> getRegistrationAccessToken(){
+        if(registrationResponse != null){
+            String registationAccessToken = registrationResponse.getRegistrationAccessToken();
+            if(registationAccessToken != null && !registationAccessToken.isBlank()) {
+                return Optional.of(registationAccessToken);
+            }
+        }
+        return Optional.empty();
     }
 }
