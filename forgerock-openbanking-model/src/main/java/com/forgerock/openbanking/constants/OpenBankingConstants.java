@@ -111,10 +111,21 @@ public class OpenBankingConstants {
     }
 
     public static class SSAClaims {
+
+        public static final String ISSUER = "iss";
+        public static final String ISSUED_AT = "iat";
+        public static final String JWT_ID = "jti";
+        public static final String OCAC_AUTHORISATIONS = "authorisations";
+        public static final String OCAC_AUTHORITY_ID = "authority_id";
+        public static final String OCAC_MEMBER_STATE = "member_state";
+        public static final String OCAC_REGISTRATION_ID = "registration_id";
+        public static final String OCAC_ROLES = "roles";
+        public static final String OCAC_STATUS = "status";
         public static final String SOFTWARE_ID = "software_id";
         public static final String SOFTWARE_CLIENT_ID = "software_client_id";
         public static final String SOFTWARE_CLIENT_DESCRIPTION = "software_client_description";
         public static final String SOFTWARE_CLIENT_NAME = "software_client_name";
+        public static final String SOFTWARE_CLIENT_URI = "software_client_uri";
         public static final String SOFTWARE_VERSION = "software_version";
         public static final String SOFTWARE_ENVIRONMENT = "software_environment";
         public static final String SOFTWARE_JWKS_ENDPOINT = "software_jwks_endpoint";
