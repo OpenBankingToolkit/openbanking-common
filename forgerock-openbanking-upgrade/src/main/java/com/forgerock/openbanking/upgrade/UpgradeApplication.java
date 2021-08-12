@@ -105,7 +105,9 @@ public abstract class UpgradeApplication implements CommandLineRunner {
             List<EntitiesVersion> uniques = allVersions.stream()
                     .collect(collectingAndThen(toCollection(() -> new TreeSet<>(comparing(EntitiesVersion::getVersion))),
                             ArrayList::new));
-            allVersions.stream().filter(version -> !uniques.contains(version)).collect(Collectors.toList())
+            allVersions.stream().filter(version -> !uniques.contains(version))
+                    .filter(entitiesVersion -> entitiesVersion.getStatus().equals(EntitiesVersion.UpgradeStatus.UPGRADED))
+                    .collect(Collectors.toList())
                     .forEach(entitiesVersion -> deleteEntitiesVersion(entitiesVersion));
             return uniques;
         }
