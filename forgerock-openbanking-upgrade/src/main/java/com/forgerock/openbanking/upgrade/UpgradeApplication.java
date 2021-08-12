@@ -30,6 +30,15 @@ import org.springframework.boot.CommandLineRunner;
 import org.springframework.boot.info.BuildProperties;
 import org.springframework.core.annotation.Order;
 
+import java.util.ArrayList;
+import java.util.List;
+import java.util.TreeSet;
+import java.util.stream.Collectors;
+
+import static java.util.Comparator.comparing;
+import static java.util.stream.Collectors.collectingAndThen;
+import static java.util.stream.Collectors.toCollection;
+
 @Order(2)
 public abstract class UpgradeApplication implements CommandLineRunner {
     private static final Logger LOGGER = LoggerFactory.getLogger(UpgradeApplication.class);
@@ -51,11 +60,11 @@ public abstract class UpgradeApplication implements CommandLineRunner {
         LOGGER.debug("Version found from the property file : " + version);
         Version to = new Version(version);
 
-        EntitiesVersion entitiesVersion = getPreviousVersion();
+        EntitiesVersion entitiesVersion = getStoredVersion();
         LOGGER.debug("Version found from the current system : " + entitiesVersion);
         LOGGER.debug("forceUpgrade : " + forceUpgrade);
 
-        if (!forceUpgrade &&  entitiesVersion.getStatus() == EntitiesVersion.UpgradeStatus.IN_PROCESS) {
+        if (!forceUpgrade && entitiesVersion.getStatus() == EntitiesVersion.UpgradeStatus.IN_PROCESS) {
             LOGGER.info("Database under upgrade already");
             return;
         }
@@ -81,12 +90,26 @@ public abstract class UpgradeApplication implements CommandLineRunner {
         }
     }
 
-    public abstract EntitiesVersion getPreviousVersion();
+    public abstract EntitiesVersion getStoredVersion();
 
     public abstract EntitiesVersion saveEntitiesVersion(EntitiesVersion entitiesVersion);
 
+    public abstract void deleteEntitiesVersion(EntitiesVersion entitiesVersion);
+
     private String getVersion() {
         return buildProperties.getVersion();
+    }
+
+    protected List<EntitiesVersion> cleanDuplicatedVersions(List<EntitiesVersion> allVersions) {
+        if (!allVersions.isEmpty()) {
+            List<EntitiesVersion> uniques = allVersions.stream()
+                    .collect(collectingAndThen(toCollection(() -> new TreeSet<>(comparing(EntitiesVersion::getVersion))),
+                            ArrayList::new));
+            allVersions.stream().filter(version -> !uniques.contains(version)).collect(Collectors.toList())
+                    .forEach(entitiesVersion -> deleteEntitiesVersion(entitiesVersion));
+            return uniques;
+        }
+        return allVersions;
     }
 
 }
