@@ -22,7 +22,13 @@ package com.forgerock.openbanking.upgrade;
 
 import com.forgerock.openbanking.upgrade.model.version.EntitiesVersion;
 import org.springframework.data.mongodb.repository.MongoRepository;
+import org.springframework.data.repository.query.Param;
+
+import java.util.Optional;
 
 
 public interface EntitiesVersionRepository extends MongoRepository<EntitiesVersion, String> {
+
+    Optional<EntitiesVersion> findByVersionAndStatus(@Param("version") String version, @Param("status") String status);
+
 }

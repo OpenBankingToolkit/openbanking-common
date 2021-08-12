@@ -29,6 +29,7 @@ import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 
 import java.util.List;
+import java.util.Optional;
 
 @Configuration
 public class UpgradeDatabase extends UpgradeApplication {
@@ -43,18 +44,26 @@ public class UpgradeDatabase extends UpgradeApplication {
     }
 
     @Override
-    public EntitiesVersion getPreviousVersion() {
-        List<EntitiesVersion> all = entitiesVersionRepository.findAll();
+    public EntitiesVersion getStoredVersion() {
+        List<EntitiesVersion> entitiesVersions = cleanDuplicatedVersions(entitiesVersionRepository.findAll());
         EntitiesVersion entitiesVersion;
-        if (all.isEmpty()) {
+        if (entitiesVersions.isEmpty()) {
             entitiesVersion = new EntitiesVersion();
             entitiesVersion.setStatus(EntitiesVersion.UpgradeStatus.UPGRADED);
             entitiesVersion.setVersion("0");
-        } else if (all.size() > 1) {
-            LOGGER.error("More than one version found: " + all);
-            throw new RuntimeException("More than one version found: " + all);
+        } else if (entitiesVersions.size() > 1) {
+            Optional<EntitiesVersion> versionOptional = entitiesVersionRepository.findByVersionAndStatus(
+                    buildProperties.getVersion(),
+                    EntitiesVersion.UpgradeStatus.UPGRADED.name()
+            );
+            if (versionOptional.isPresent()) {
+                LOGGER.info("Current {} version {} found", EntitiesVersion.UpgradeStatus.UPGRADED.name(), buildProperties.getVersion());
+                return versionOptional.get();
+            }
+            LOGGER.error("More than one version found: " + entitiesVersions);
+            throw new RuntimeException("More than one version found: " + entitiesVersions);
         } else {
-            entitiesVersion = all.get(0);
+            entitiesVersion = entitiesVersions.get(0);
         }
         return entitiesVersion;
     }
@@ -62,5 +71,11 @@ public class UpgradeDatabase extends UpgradeApplication {
     @Override
     public EntitiesVersion saveEntitiesVersion(EntitiesVersion entitiesVersion) {
         return entitiesVersionRepository.save(entitiesVersion);
+    }
+
+    @Override
+    public void deleteEntitiesVersion(EntitiesVersion entitiesVersion) {
+        LOGGER.debug("Deleting duplicated version \n{}", entitiesVersion.toString());
+        entitiesVersionRepository.delete(entitiesVersion);
     }
 }
