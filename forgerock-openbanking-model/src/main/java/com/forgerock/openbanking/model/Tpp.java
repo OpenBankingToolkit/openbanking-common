@@ -27,7 +27,6 @@ import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Data;
 import lombok.NoArgsConstructor;
-import org.apache.commons.codec.binary.StringUtils;
 import org.springframework.data.annotation.CreatedDate;
 import org.springframework.data.annotation.Id;
 import org.springframework.data.annotation.LastModifiedDate;
@@ -55,6 +54,10 @@ public class Tpp {
     public String officialName;
     @Indexed
     private String certificateCn;
+    @Indexed
+    private String softwareId;
+    @Indexed
+    private String organisationId;
     @Indexed
     private String clientId;
     private String ssa;
