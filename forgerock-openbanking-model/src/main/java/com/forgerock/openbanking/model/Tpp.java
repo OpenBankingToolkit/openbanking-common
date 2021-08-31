@@ -56,10 +56,11 @@ public class Tpp {
     @Indexed
     private String softwareId;
     @Indexed
-    private String organisationId;
+    private String authorisationNumber;
     @Indexed
     private String clientId;
-    private DirectorySoftwareStatement ssa;
+    private String ssa;
+    private DirectorySoftwareStatement directorySoftwareStatement;
     private String tppRequest;
     private OIDCRegistrationResponse registrationResponse;
 
@@ -71,12 +72,12 @@ public class Tpp {
     private Set<SoftwareStatementRole> types = new HashSet<>();
 
     public DirectorySoftwareStatement getSsaClaim() {
-        return ssa;
+        return directorySoftwareStatement;
     }
 
     public String getLogo() {
-        if (getSsa() != null) {
-            return ssa.getSoftware_logo_uri();
+        if (getDirectorySoftwareStatement() != null) {
+            return directorySoftwareStatement.getSoftware_logo_uri();
         }
         return null;
     }
