@@ -20,25 +20,23 @@
  */
 package com.forgerock.openbanking.model;
 
-import com.forgerock.openbanking.constants.OpenBankingConstants;
+import java.util.Date;
+import java.util.HashSet;
+import java.util.Optional;
+import java.util.Set;
+
 import com.forgerock.openbanking.model.oidc.OIDCRegistrationResponse;
-import com.nimbusds.jwt.JWTClaimsSet;
-import lombok.AllArgsConstructor;
-import lombok.Builder;
-import lombok.Data;
-import lombok.NoArgsConstructor;
-import org.apache.commons.codec.binary.StringUtils;
+
 import org.springframework.data.annotation.CreatedDate;
 import org.springframework.data.annotation.Id;
 import org.springframework.data.annotation.LastModifiedDate;
 import org.springframework.data.mongodb.core.index.Indexed;
 import org.springframework.data.mongodb.core.mapping.Document;
 
-import java.text.ParseException;
-import java.util.Date;
-import java.util.HashSet;
-import java.util.Optional;
-import java.util.Set;
+import lombok.AllArgsConstructor;
+import lombok.Builder;
+import lombok.Data;
+import lombok.NoArgsConstructor;
 
 
 @Data
@@ -56,8 +54,13 @@ public class Tpp {
     @Indexed
     private String certificateCn;
     @Indexed
+    private String softwareId;
+    @Indexed
+    private String authorisationNumber;
+    @Indexed
     private String clientId;
     private String ssa;
+    private DirectorySoftwareStatement directorySoftwareStatement;
     private String tppRequest;
     private OIDCRegistrationResponse registrationResponse;
 
@@ -68,18 +71,13 @@ public class Tpp {
 
     private Set<SoftwareStatementRole> types = new HashSet<>();
 
-    public JWTClaimsSet getSsaClaim() throws ParseException {
-        return JWTClaimsSet.parse(ssa);
+    public DirectorySoftwareStatement getSsaClaim() {
+        return directorySoftwareStatement;
     }
 
     public String getLogo() {
-        if (getSsa() != null) {
-            try {
-                JWTClaimsSet claims = getSsaClaim();
-                return claims.getStringClaim(OpenBankingConstants.SSAClaims.SOFTWARE_LOGO_URI);
-            } catch (ParseException e) {
-                //Couldn't read claims
-            }
+        if (getDirectorySoftwareStatement() != null) {
+            return directorySoftwareStatement.getSoftware_logo_uri();
         }
         return null;
     }
