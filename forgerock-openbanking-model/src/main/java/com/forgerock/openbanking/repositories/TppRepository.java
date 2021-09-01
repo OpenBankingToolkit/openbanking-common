@@ -33,7 +33,7 @@ public interface TppRepository extends MongoRepository<Tpp, String> {
 
     Collection<Tpp> findByCertificateCn(@Param("certificateCn") String certificateCn);
 
-    Collection<Tpp> findByOrganisationId(@Param("organisationId") String organisationId);
+    Collection<Tpp> findByAuthorisationNumber(@Param("authorisationNumber") String authorisationNumber);
 
     Tpp findByClientId(@Param("clientId") String clientId);
 
