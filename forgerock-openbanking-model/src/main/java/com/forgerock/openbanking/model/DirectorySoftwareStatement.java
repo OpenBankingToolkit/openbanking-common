@@ -20,8 +20,18 @@
  */
 package com.forgerock.openbanking.model;
 
+import com.fasterxml.jackson.annotation.JsonSubTypes;
+import com.fasterxml.jackson.annotation.JsonTypeInfo;
+
 import java.util.List;
 
+@JsonTypeInfo(
+        use = JsonTypeInfo.Id.NAME,
+        include = JsonTypeInfo.As.PROPERTY,
+        property = "iss")
+@JsonSubTypes({
+        @JsonSubTypes.Type(value = DirectorySoftwareStatementOpenBanking.class, name = "ForgeRock"),
+        @JsonSubTypes.Type(value = DirectorySoftwareStatementOpenBanking.class, name = "OpenBanking")})
 public interface DirectorySoftwareStatement {
 
     String getJti();

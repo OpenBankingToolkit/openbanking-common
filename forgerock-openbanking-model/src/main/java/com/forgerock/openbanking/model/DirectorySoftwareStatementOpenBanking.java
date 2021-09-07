@@ -20,9 +20,7 @@
  */
 package com.forgerock.openbanking.model;
 
-import lombok.Builder;
-import lombok.Data;
-import lombok.EqualsAndHashCode;
+import lombok.*;
 
 import java.util.Date;
 import java.util.List;
@@ -30,6 +28,8 @@ import java.util.List;
 @Builder
 @Data
 @EqualsAndHashCode(callSuper=false)
+@NoArgsConstructor
+@AllArgsConstructor(access = AccessLevel.PROTECTED)
 public class DirectorySoftwareStatementOpenBanking implements DirectorySoftwareStatement {
     String iss;
     Date iat;
