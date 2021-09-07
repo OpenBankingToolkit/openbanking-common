@@ -26,7 +26,7 @@
 
     <name>ForgeRock OpenBanking Reference Implementation - commons</name>
     <artifactId>forgerock-openbanking-starter-commons</artifactId>
-    <version>1.2.6</version>
+    <version>1.2.7-SNAPSHOT</version>
     <packaging>pom</packaging>
 
     <parent>
@@ -139,7 +139,7 @@
         <connection>scm:git:git@github.com:OpenBankingToolkit/openbanking-common.git</connection>
         <developerConnection>scm:git:git@github.com:OpenBankingToolkit/openbanking-common.git</developerConnection>
         <url>https://github.com/OpenBankingToolkit/openbanking-common.git</url>
-        <tag>1.2.6</tag>
+        <tag>HEAD</tag>
   </scm>
 
   <distributionManagement>
