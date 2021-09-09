@@ -61,4 +61,25 @@ public class DirectorySoftwareStatementTest extends TestCase {
         DirectorySoftwareStatement value = mapper.readValue(instream, DirectorySoftwareStatement.class);
         assertNotNull(value);
     }
+
+    @Test
+    public void testSerialisationOBIssuer() throws IOException {
+        // Given
+        DirectorySoftwareStatement directorySoftwareStatement =
+                DirectorySoftwareStatementOpenBanking.builder()
+                        .software_id("software_id")
+                        .software_client_description("software client description")
+                        .iss("OpenBanking Ltd")
+                        .software_client_id("software_client_id").build();
+
+
+        Writer outstream = new StringWriter();
+        mapper.writeValue(outstream, directorySoftwareStatement);
+
+        String serialised = outstream.toString();
+
+        Reader instream = new StringReader(serialised);
+        DirectorySoftwareStatement value = mapper.readValue(instream, DirectorySoftwareStatement.class);
+        assertNotNull(value);
+    }
 }

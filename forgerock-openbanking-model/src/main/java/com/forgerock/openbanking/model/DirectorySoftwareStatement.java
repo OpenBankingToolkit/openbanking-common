@@ -31,7 +31,7 @@ import java.util.List;
         property = "iss")
 @JsonSubTypes({
         @JsonSubTypes.Type(value = DirectorySoftwareStatementOpenBanking.class, name = "ForgeRock"),
-        @JsonSubTypes.Type(value = DirectorySoftwareStatementOpenBanking.class, name = "OpenBanking")})
+        @JsonSubTypes.Type(value = DirectorySoftwareStatementOpenBanking.class, name = "OpenBanking Ltd")})
 public interface DirectorySoftwareStatement {
 
     String getJti();
