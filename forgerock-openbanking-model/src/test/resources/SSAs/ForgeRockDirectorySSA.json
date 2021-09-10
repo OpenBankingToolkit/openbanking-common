@@ -1,0 +1,29 @@
+{
+  "org_jwks_endpoint": "TODO",
+  "software_mode": "TEST",
+  "software_redirect_uris": [
+    "https://google.co.uk"
+  ],
+  "org_status": "Active",
+  "software_client_name": "Fred Blogs App",
+  "software_client_id": "613b16c5f3e9c700157869c9",
+  "iss": "ForgeRock",
+  "software_client_description": "Fred's app",
+  "software_jwks_endpoint": "https://service.directory.master.forgerock.financial:443/api/software-statement/613b16c5f3e9c700157869c9/application/jwk_uri",
+  "software_id": "613b16c5f3e9c700157869c9",
+  "org_contacts": [],
+  "ob_registry_tos": "https://directory.master.forgerock.financial:443/tos/",
+  "org_id": "613af9eb3c7c990014212369",
+  "software_jwks_revoked_endpoint": "TODO",
+  "software_roles": [
+    "AISP",
+    "DATA",
+    "PISP",
+    "CBPII"
+  ],
+  "exp": 1631867235,
+  "org_name": "Anonymous",
+  "org_jwks_revoked_endpoint": "TODO",
+  "iat": 1631262435,
+  "jti": "21169281-b3e8-422f-ba4b-d2b4d369d3f4"
+}

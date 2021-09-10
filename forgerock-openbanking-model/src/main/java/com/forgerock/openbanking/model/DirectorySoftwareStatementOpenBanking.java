@@ -20,6 +20,7 @@
  */
 package com.forgerock.openbanking.model;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import lombok.*;
 
 import java.util.Date;
@@ -57,6 +58,10 @@ public class DirectorySoftwareStatementOpenBanking implements DirectorySoftwareS
     String software_policy_uri;
     String software_tos_uri;
     String software_on_behalf_of_org;
+    @JsonIgnore
+    String ob_registry_tos;
+    @JsonIgnore
+    String exp;
 
     @Override
     public boolean hasRole(SoftwareStatementRole role) {

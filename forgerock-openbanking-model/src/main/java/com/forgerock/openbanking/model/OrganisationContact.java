@@ -20,11 +20,12 @@
  */
 package com.forgerock.openbanking.model;
 
-import lombok.Builder;
-import lombok.Data;
+import lombok.*;
 
 @Data
 @Builder
+@NoArgsConstructor
+@AllArgsConstructor(access = AccessLevel.PROTECTED)
 public class OrganisationContact {
     String name;
     String email;

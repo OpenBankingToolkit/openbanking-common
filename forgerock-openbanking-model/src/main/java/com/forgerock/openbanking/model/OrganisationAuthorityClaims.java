@@ -20,17 +20,18 @@
  */
 package com.forgerock.openbanking.model;
 
-import lombok.Builder;
-import lombok.Data;
+import lombok.*;
 
 import java.util.List;
 
 @Data
 @Builder
+@NoArgsConstructor
+@AllArgsConstructor(access = AccessLevel.PROTECTED)
 public class OrganisationAuthorityClaims {
 
     String authority_id;
     String registration_id;
     String status;
-    List<AuthorisationClaim> authorizations;
+    List<AuthorisationClaim> authorisations;
 }
