@@ -1,0 +1,77 @@
+{
+  "iss": "OpenBanking Ltd",
+  "iat": 1631260512,
+  "jti": "368d6415abdd4591",
+  "software_environment": "sandbox",
+  "software_mode": "Test",
+  "software_id": "ebSqTNqmQXFYz6VtWGXZAa",
+  "software_client_id": "ebSqTNqmQXFYz6VtWGXZAa",
+  "software_client_name": "Automating-testing",
+  "software_client_description": "TPP used for automating testing",
+  "software_version": 1.1,
+  "software_client_uri": "https://forgerock.com",
+  "software_redirect_uris": [
+    "https://localhost",
+    "https://www.google.co.uk"
+  ],
+  "software_roles": [
+    "AISP",
+    "PISP"
+  ],
+  "organisation_competent_authority_claims": {
+    "authority_id": "OBGBR",
+    "registration_id": "Unknown0015800001041REAAY",
+    "status": "Active",
+    "authorisations": [
+      {
+        "member_state": "GB",
+        "roles": [
+          "PISP",
+          "ASPSP",
+          "AISP"
+        ]
+      },
+      {
+        "member_state": "IE",
+        "roles": [
+          "AISP",
+          "ASPSP",
+          "PISP"
+        ]
+      },
+      {
+        "member_state": "NL",
+        "roles": [
+          "PISP",
+          "AISP",
+          "ASPSP"
+        ]
+      }
+    ]
+  },
+  "software_logo_uri": "https://forgerock.com",
+  "org_status": "Active",
+  "org_id": "0015800001041REAAY",
+  "org_name": "FORGEROCK LIMITED",
+  "org_contacts": [
+    {
+      "name": "Technical",
+      "email": "jamie.bowen@forgerock.com",
+      "phone": "447765109527",
+      "type": "Technical"
+    },
+    {
+      "name": "Business",
+      "email": "john.proudfoot@forgerock.com",
+      "phone": "447710350266",
+      "type": "Business"
+    }
+  ],
+  "org_jwks_endpoint": "https://keystore.openbankingtest.org.uk/0015800001041REAAY/0015800001041REAAY.jwks",
+  "org_jwks_revoked_endpoint": "https://keystore.openbankingtest.org.uk/0015800001041REAAY/revoked/0015800001041REAAY.jwks",
+  "software_jwks_endpoint": "https://keystore.openbankingtest.org.uk/0015800001041REAAY/ebSqTNqmQXFYz6VtWGXZAa.jwks",
+  "software_jwks_revoked_endpoint": "https://keystore.openbankingtest.org.uk/0015800001041REAAY/revoked/ebSqTNqmQXFYz6VtWGXZAa.jwks",
+  "software_policy_uri": "https://forgerock.com",
+  "software_tos_uri": "https://forgerock.com",
+  "software_on_behalf_of_org": null
+}

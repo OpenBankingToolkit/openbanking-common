@@ -44,42 +44,30 @@ public class DirectorySoftwareStatementTest extends TestCase {
     @Test
     public void testSerialisation() throws IOException {
         // Given
-        DirectorySoftwareStatement directorySoftwareStatement =
-                DirectorySoftwareStatementOpenBanking.builder()
-                        .software_id("software_id")
-                        .software_client_description("software client description")
-                        .iss("ForgeRock")
-                        .software_client_id("software_client_id").build();
+        InputStream ssa = getSsa("SSAs/ForgeRockDirectorySSA.json");
 
-
-        Writer outstream = new StringWriter();
-        mapper.writeValue(outstream, directorySoftwareStatement);
-
-        String serialised = outstream.toString();
-
-        Reader instream = new StringReader(serialised);
+        Reader instream = new InputStreamReader(ssa);
         DirectorySoftwareStatement value = mapper.readValue(instream, DirectorySoftwareStatement.class);
+        OutputStream os = new ByteArrayOutputStream();
+        mapper.writeValue(os, value);
         assertNotNull(value);
     }
 
     @Test
     public void testSerialisationOBIssuer() throws IOException {
         // Given
-        DirectorySoftwareStatement directorySoftwareStatement =
-                DirectorySoftwareStatementOpenBanking.builder()
-                        .software_id("software_id")
-                        .software_client_description("software client description")
-                        .iss("OpenBanking Ltd")
-                        .software_client_id("software_client_id").build();
+        InputStream ssa = getSsa("SSAs/OpenBankingAutomatedTestingSSA.json");
 
-
-        Writer outstream = new StringWriter();
-        mapper.writeValue(outstream, directorySoftwareStatement);
-
-        String serialised = outstream.toString();
-
-        Reader instream = new StringReader(serialised);
+        Reader instream = new InputStreamReader(ssa);
         DirectorySoftwareStatement value = mapper.readValue(instream, DirectorySoftwareStatement.class);
+
+        OutputStream os = new ByteArrayOutputStream();
+        mapper.writeValue(os, value);
+
         assertNotNull(value);
+    }
+
+    private InputStream getSsa(String path){
+        return getClass().getClassLoader().getResourceAsStream(path);
     }
 }
