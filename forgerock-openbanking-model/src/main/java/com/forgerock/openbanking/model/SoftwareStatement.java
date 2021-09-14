@@ -55,6 +55,7 @@ public class SoftwareStatement {
     @LastModifiedDate
     public Date updated;
     private String applicationId;
+    private String iss;
 
     /**
      * The software ID is the same as the ForgeRock Application Id. It is included here to make logic simpler for
@@ -86,6 +87,7 @@ public class SoftwareStatement {
 
         redirectUris = new ArrayList<>();
         mode = Mode.TEST;
+        this.iss = "ForgeRock";
     }
 
     public enum Mode {

@@ -45,12 +45,11 @@ public class DirectorySoftwareStatementTest extends TestCase {
     public void testSerialisation() throws IOException {
         // Given
         InputStream ssa = getSsa("SSAs/ForgeRockDirectorySSA.json");
-
-        Reader instream = new InputStreamReader(ssa);
-        DirectorySoftwareStatement value = mapper.readValue(instream, DirectorySoftwareStatement.class);
+        DirectorySoftwareStatement value = mapper.readValue(ssa, DirectorySoftwareStatement.class);
+        assertNotNull(value.getIss());
+        assertNotNull(value);
         OutputStream os = new ByteArrayOutputStream();
         mapper.writeValue(os, value);
-        assertNotNull(value);
     }
 
     @Test
@@ -60,7 +59,7 @@ public class DirectorySoftwareStatementTest extends TestCase {
 
         Reader instream = new InputStreamReader(ssa);
         DirectorySoftwareStatement value = mapper.readValue(instream, DirectorySoftwareStatement.class);
-
+        assertNotNull(value.getIss());
         OutputStream os = new ByteArrayOutputStream();
         mapper.writeValue(os, value);
 

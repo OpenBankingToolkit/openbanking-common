@@ -30,7 +30,7 @@ import java.util.List;
 @Data
 @EqualsAndHashCode(callSuper=false)
 @NoArgsConstructor
-@AllArgsConstructor(access = AccessLevel.PROTECTED)
+@AllArgsConstructor(access = AccessLevel.PUBLIC)
 public class DirectorySoftwareStatementOpenBanking implements DirectorySoftwareStatement {
     String iss;
     Date iat;

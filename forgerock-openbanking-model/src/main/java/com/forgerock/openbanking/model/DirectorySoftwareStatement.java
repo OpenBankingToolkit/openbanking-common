@@ -20,14 +20,17 @@
  */
 package com.forgerock.openbanking.model;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.fasterxml.jackson.annotation.JsonSubTypes;
+import com.fasterxml.jackson.annotation.JsonTypeId;
 import com.fasterxml.jackson.annotation.JsonTypeInfo;
 
 import java.util.List;
 
 @JsonTypeInfo(
         use = JsonTypeInfo.Id.NAME,
-        include = JsonTypeInfo.As.PROPERTY,
+        include = JsonTypeInfo.As.EXISTING_PROPERTY,
+        visible = true,
         property = "iss")
 @JsonSubTypes({
         @JsonSubTypes.Type(value = DirectorySoftwareStatementOpenBanking.class, name = "ForgeRock"),
@@ -35,7 +38,7 @@ import java.util.List;
 public interface DirectorySoftwareStatement {
 
     String getJti();
-    
+
     String getSoftware_jwks_endpoint();
 
     List<String> getSoftware_redirect_uris();
