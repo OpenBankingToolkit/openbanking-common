@@ -28,6 +28,8 @@ import org.junit.Test;
 
 import java.io.*;
 
+import static org.assertj.core.api.AssertionsForClassTypes.assertThat;
+
 @Slf4j
 public class DirectorySoftwareStatementTest extends TestCase {
 
@@ -64,6 +66,40 @@ public class DirectorySoftwareStatementTest extends TestCase {
         mapper.writeValue(os, value);
 
         assertNotNull(value);
+    }
+
+    @Test
+    public void testGetAuthorisationNumberFromOBSsa() throws IOException {
+        // Given
+        InputStream ssa = getSsa("SSAs/OpenBankingAutomatedTestingSSA.json");
+
+        Reader instream = new InputStreamReader(ssa);
+        DirectorySoftwareStatement directorySoftwareStatement = mapper.readValue(instream,
+                DirectorySoftwareStatement.class);
+
+        // When
+        String authorisationNumber = directorySoftwareStatement.getAuthorisationNumber();
+
+        // Then
+        assertThat(authorisationNumber).isNotNull();
+        assertThat(authorisationNumber).isEqualTo("PSDGB-OB-Unknown0015800001041REAAY");
+    }
+
+    @Test
+    public void testGetAuthorisationNumberFromFRSsa() throws IOException {
+        // Given
+        InputStream ssa = getSsa("SSAs/ForgeRockDirectorySSA.json");
+
+        Reader instream = new InputStreamReader(ssa);
+        DirectorySoftwareStatement directorySoftwareStatement = mapper.readValue(instream,
+                DirectorySoftwareStatement.class);
+
+        // When
+        String authorisationNumber = directorySoftwareStatement.getAuthorisationNumber();
+
+        // Then
+        assertThat(authorisationNumber).isNotNull();
+        assertThat(authorisationNumber).isEqualTo("PSDGB-FFA-" + directorySoftwareStatement.getOrg_id());
     }
 
     private InputStream getSsa(String path){
