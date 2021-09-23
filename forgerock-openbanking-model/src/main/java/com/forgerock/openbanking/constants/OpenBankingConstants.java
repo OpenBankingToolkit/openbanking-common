@@ -173,4 +173,13 @@ public class OpenBankingConstants {
         public static final String TRANSACTION_IDENTIFIER = "txn";
         public static final String TIME_OF_EVENT = "toe";
     }
+
+    public static class SoftwareStatementIssuers {
+        public static final String OPENBANKING_LTD = "OpenBanking Ltd";
+        public static final String FORGEROCK = "ForgeRock";
+    }
+
+    public static class AuthorityClaimsAuthorityIDs {
+        public static final String OPENBANKING_AUTHORITY_ID = "OBGBR";
+    }
 }

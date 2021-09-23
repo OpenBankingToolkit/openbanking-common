@@ -21,11 +21,15 @@
 package com.forgerock.openbanking.model;
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
+import com.forgerock.openbanking.constants.CountryCodes;
+import com.forgerock.openbanking.constants.OpenBankingConstants;
 import lombok.*;
+import lombok.extern.slf4j.Slf4j;
 
 import java.util.Date;
 import java.util.List;
 
+@Slf4j
 @Builder
 @Data
 @EqualsAndHashCode(callSuper=false)
@@ -63,8 +67,33 @@ public class DirectorySoftwareStatementOpenBanking implements DirectorySoftwareS
     @JsonIgnore
     String exp;
 
+    @JsonIgnore
     @Override
     public boolean hasRole(SoftwareStatementRole role) {
         return software_roles.contains(role.name());
+    }
+
+    @JsonIgnore
+    @Override
+    public String getAuthorisationNumber(){
+        String authorisationNumber = null;
+        if(organisation_competent_authority_claims != null) {
+            String authorityId = organisation_competent_authority_claims.getAuthority_id();
+            String registrationId = organisation_competent_authority_claims.getRegistration_id();
+            String threeLetterCountryCode = authorityId.substring(authorityId.length() - 3);
+            String competentAuthorityIdentifier = authorityId.substring(0, authorityId.length() - 3);
+            String twoLetterCountryCode =
+                    CountryCodes.getTwoLetterCountryCodeFromThreeLetterCountryCode(threeLetterCountryCode);
+            if(twoLetterCountryCode != null){
+                authorisationNumber =
+                        "PSD" + twoLetterCountryCode + "-" + competentAuthorityIdentifier + "-" + registrationId;
+            }
+        } else {
+            if(iss.equals(OpenBankingConstants.SoftwareStatementIssuers.FORGEROCK)){
+                authorisationNumber = "PSDGB-FFA-" + org_id;
+            }
+        }
+        log.debug("getAuthorisationNumber() returning {}", authorisationNumber);
+        return authorisationNumber;
     }
 }

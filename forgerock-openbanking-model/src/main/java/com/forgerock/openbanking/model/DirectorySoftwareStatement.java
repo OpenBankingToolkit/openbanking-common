@@ -64,4 +64,6 @@ public interface DirectorySoftwareStatement {
     boolean hasRole(SoftwareStatementRole role);
 
     List<OrganisationContact> getOrg_contacts();
+
+    String getAuthorisationNumber();
 }
