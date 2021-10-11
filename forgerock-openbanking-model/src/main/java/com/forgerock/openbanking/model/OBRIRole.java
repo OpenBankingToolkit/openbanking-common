@@ -20,6 +20,7 @@
  */
 package com.forgerock.openbanking.model;
 
+import com.forgerock.cert.psd2.Psd2Role;
 import org.springframework.security.core.GrantedAuthority;
 
 import java.util.Collections;
@@ -102,5 +103,24 @@ public enum OBRIRole implements GrantedAuthority {
                 .filter(c -> c.isPresent())
                 .map(c -> c.get())
                 .collect(Collectors.toList());
+    }
+
+    public static Optional<OBRIRole> getRoleFromPsd2Role(Psd2Role psd2Role) {
+        OBRIRole role = null;
+        switch(psd2Role) {
+            case PSP_AI:
+                role = ROLE_AISP;
+                break;
+            case PSP_PI:
+                role = ROLE_PISP;
+                break;
+            case PSP_AS:
+                role = ROLE_ASPSP;
+                break;
+            case PSP_IC:
+                role = ROLE_CBPII;
+        }
+
+        return Optional.ofNullable(role);
     }
 }
