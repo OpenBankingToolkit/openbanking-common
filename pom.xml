@@ -26,13 +26,13 @@
 
     <name>ForgeRock OpenBanking Reference Implementation - commons</name>
     <artifactId>forgerock-openbanking-starter-commons</artifactId>
-    <version>1.2.14-SNAPSHOT</version>
+    <version>1.2.15-SNAPSHOT</version>
     <packaging>pom</packaging>
 
     <parent>
         <groupId>com.forgerock.openbanking</groupId>
         <artifactId>forgerock-openbanking-starter-parent</artifactId>
-        <version>1.2.5</version>
+        <version>1.2.6</version>
         <relativePath />
     </parent>
 
