@@ -54,6 +54,8 @@ public enum OBReference {
 
     FILE_PAYMENTS("FilePayments"),
 
+    DOMESTIC_VRP_PAYMENTS("DomesticVrpPayments"),
+
     //Apis
     CREATE_ACCOUNT_REQUEST("CreateAccountRequest"),
     DELETE_ACCOUNT_REQUEST("DeleteAccountRequest"),
@@ -162,6 +164,15 @@ public enum OBReference {
     GET_FILE_PAYMENT("GetFilePayment"),
     GET_FILE_PAYMENT_DETAILS("GetFilePaymentDetails"),
     GET_FILE_PAYMENT_REPORT("GetFilePaymentReport"),
+
+    // Domestic VRPS
+    CREATE_DOMESTIC_VRP_PAYMENT_CONSENT("CreateDomesticVrpPaymentConsent"),
+    GET_DOMESTIC_VRP_PAYMENT_CONSENT("GetDomesticVrpPaymentConsent"),
+    DELETE_DOMESTIC_VRP_PAYMENT_CONSENT("DeleteDomesticVrpPaymentConsent"),
+    GET_DOMESTIC_VRP_PAYMENT_FUNDS_CONFIRMATION("GetDomesticVrpPaymentFundsConfirmation"),
+    CREATE_DOMESTIC_VRP_PAYMENT("CreateDomesticVrpPayment"),
+    GET_DOMESTIC_VRP_PAYMENT("GetDomesticVrpPayment"),
+    GET_DOMESTIC_VRP_PAYMENT_DETAILS("GetDomesticVrpPaymentDetails"),
 
     NONE("");
 
