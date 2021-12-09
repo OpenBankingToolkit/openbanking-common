@@ -522,6 +522,25 @@ public enum OBRIErrorType {
             ErrorCode.OBRI_REQUEST_PARAMETER_PERMISSIONS_NOT_PERMITTED,
             "One or more permissions requested in the submitted account access consent request are not permitted on this sandbox. The permissions that are not permitted are: %s"),
 
+    REQUEST_VRP_INITIATION_DOESNT_MATCH_CONSENT(
+            HttpStatus.BAD_REQUEST,
+            OBStandardErrorCodes1.UK_OBIE_RESOURCE_CONSENT_MISMATCH,
+            "The provided initiation data differs from that in the matching consent"
+    ),
+
+    REQUEST_VRP_RISK_DOESNT_MATCH_CONSENT(
+            HttpStatus.BAD_REQUEST,
+            OBStandardErrorCodes1.UK_OBIE_RESOURCE_CONSENT_MISMATCH,
+            "The provided risk data differs from that in the matching consent"
+    ),
+
+    REQUEST_VRP_CREDITOR_ACCOUNT_NOT_SPECIFIED(
+            HttpStatus.BAD_REQUEST,
+            OBStandardErrorCodes1.UK_OBIE_RESOURCE_CONSENT_MISMATCH,
+            "Creditor account must be specified in the VRP request when not provided in the consent"
+    ),
+
+
     REQUEST_UNDEFINED_ERROR_YET(
             HttpStatus.BAD_REQUEST,
             ErrorCode.OBRI_REQUEST_UNDEFINED_ERROR_YET,
