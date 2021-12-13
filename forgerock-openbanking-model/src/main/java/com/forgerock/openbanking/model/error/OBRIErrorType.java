@@ -541,7 +541,7 @@ public enum OBRIErrorType {
     ),
     REQUEST_VRP_CONTROL_PARAMETERS_RULES(
             HttpStatus.BAD_REQUEST,
-            OBStandardErrorCodes1.UK_OBIE_FAILS_CONTROL_PARAMETERS,
+            OBStandardErrorCodes1.UK_OBIE_RULES_FAILS_CONTROL_PARAMETERS,
             "The field '%s' breach a limitation set by '%s'"
     ),
     REQUEST_UNDEFINED_ERROR_YET(
