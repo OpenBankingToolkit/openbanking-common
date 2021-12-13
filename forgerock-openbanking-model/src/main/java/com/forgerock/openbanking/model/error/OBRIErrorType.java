@@ -539,8 +539,11 @@ public enum OBRIErrorType {
             OBStandardErrorCodes1.UK_OBIE_RESOURCE_CONSENT_MISMATCH,
             "Creditor account must be specified in the VRP request when not provided in the consent"
     ),
-
-
+    REQUEST_VRP_CONTROL_PARAMETERS_RULES(
+            HttpStatus.BAD_REQUEST,
+            OBStandardErrorCodes1.UK_OBIE_FAILS_CONTROL_PARAMETERS,
+            "The field '%s' breach a limitation set by '%s'"
+    ),
     REQUEST_UNDEFINED_ERROR_YET(
             HttpStatus.BAD_REQUEST,
             ErrorCode.OBRI_REQUEST_UNDEFINED_ERROR_YET,
