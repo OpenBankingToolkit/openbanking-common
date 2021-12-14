@@ -12,6 +12,7 @@ on:
 
 env:
   GITHUB_SHA: ${{ github.sha }}
+  NODE_VERSION: '10'
 
 jobs:
   prepare:
@@ -20,6 +21,10 @@ jobs:
     steps:
       - name: Checkout Repo
         uses: actions/checkout@v2
+      - name: setup node version ${NODE_VERSION}
+        uses: actions/setup-node@v2
+        with:
+          node-version: ${NODE_VERSION}
       - name: Run tests
         working-directory: ./forgerock-openbanking-ui
         run: |
