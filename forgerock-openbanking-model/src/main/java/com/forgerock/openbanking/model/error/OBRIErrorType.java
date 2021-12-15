@@ -522,6 +522,12 @@ public enum OBRIErrorType {
             ErrorCode.OBRI_REQUEST_PARAMETER_PERMISSIONS_NOT_PERMITTED,
             "One or more permissions requested in the submitted account access consent request are not permitted on this sandbox. The permissions that are not permitted are: %s"),
 
+    REQUEST_ACCOUNT_ACCESS_CONSENT_PERMISSIONS_ARE_INVALID(
+            HttpStatus.BAD_REQUEST,
+            ErrorCode.OBRI_REQUEST_PARAMETER_PERMISSIONS_INVALID,
+            "Permissions requested in the submitted account access consent request are invalid." +
+                    " Permissions submitted: '%s'. Reason '%s'"),
+
     REQUEST_VRP_INITIATION_DOESNT_MATCH_CONSENT(
             HttpStatus.BAD_REQUEST,
             OBStandardErrorCodes1.UK_OBIE_RESOURCE_CONSENT_MISMATCH,

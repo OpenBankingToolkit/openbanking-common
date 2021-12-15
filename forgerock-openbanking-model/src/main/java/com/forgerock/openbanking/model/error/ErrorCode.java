@@ -77,6 +77,7 @@ public enum ErrorCode implements StandardErrorCode {
     OBRI_REQUEST_PARAMETER_CLAIM_MANDATORY("OBRI.Request.Parameter.claim.mandatory"),
     OBRI_REQUEST_PARAMETER_QUERY_NOT_MATCHING_CLAIM("OBRI.Request.Parameter.query.not.matching.claim"),
     OBRI_REQUEST_PARAMETER_PERMISSIONS_NOT_PERMITTED("OBRI.Request.Parameter.permissions.not.permitted"),
+    OBRI_REQUEST_PARAMETER_PERMISSIONS_INVALID("OBRI.Request.Parameter.permissions.invalid"),
 
     OBRI_REQUEST_FILE_HASH_INCORRECT("OBRI.Request.Object.file.hash.no.matching.metadata"),
     OBRI_REQUEST_FILE_EMPTY("OBRI.Request.Object.file.empty"),
