@@ -4,7 +4,7 @@
 |---|---|
 |Build|[![Build Status](https://img.shields.io/endpoint.svg?url=https%3A%2F%2Factions-badge.atrox.dev%2FOpenBankingToolkit%2Fopenbanking-common%2Fbadge%3Fref%3Dmaster&style=flat)](https://actions-badge.atrox.dev/OpenBankingToolkit/openbanking-common/goto?ref=master)|
 |Code coverage|[![codecov](https://codecov.io/gh/OpenBankingToolkit/openbanking-common/branch/master/graph/badge.svg)](https://codecov.io/gh/OpenBankingToolkit/openbanking-common)
-|Bintray|[![Bintray](https://img.shields.io/bintray/v/openbanking-toolkit/OpenBankingToolKit/openbanking-commons.svg?maxAge=2592000)](https://bintray.com/openbanking-toolkit/OpenBankingToolKit/openbanking-commons)|
+|Release|[![GitHub release (latest by date)](https://img.shields.io/github/v/release/OpenBankingToolkit/openbanking-common.svg)](https://img.shields.io/github/v/release/OpenBankingToolkit/openbanking-common)|
 |License|![license](https://img.shields.io/github/license/ACRA/acra.svg)|
 
 **_This repository is part of the Open Banking Tool kit. If you just landed to that repository looking for our tool kit,_
