@@ -25,6 +25,7 @@ public enum OBGroupName {
     PISP("pisp"),
     CBPII("cbpii"),
     EVENT(""),
+    INFO("info"),
     NONE("");
 
     private String reference;

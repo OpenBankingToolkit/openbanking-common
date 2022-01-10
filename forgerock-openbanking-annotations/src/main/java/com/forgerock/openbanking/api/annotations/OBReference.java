@@ -174,6 +174,10 @@ public enum OBReference {
     GET_DOMESTIC_VRP_PAYMENT("GetDomesticVrpPayment"),
     GET_DOMESTIC_VRP_PAYMENT_DETAILS("GetDomesticVrpPaymentDetails"),
 
+    // Customer info endpoints
+    CUSTOMER_INFO("CustomerInfo"),
+    GET_CUSTOMER_INFO("GetCustomerInfo"),
+
     NONE("");
 
     private String reference;
