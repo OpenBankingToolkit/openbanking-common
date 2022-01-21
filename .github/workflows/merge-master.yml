@@ -17,8 +17,9 @@ jobs:
         uses: actions/setup-java@v2
         with: # running setup-java
           java-version: '11'
+          distribution: 'zulu'
           architecture: x64
-          cache: maven
+          cache: 'maven'
 
       - name: Build project with Maven # build the project
         run: mvn -B clean verify --file pom.xml # this command executes each default lifecycle phase in order (validate, compile, test, package, etc), before executing verify.

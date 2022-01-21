@@ -15,6 +15,7 @@ jobs:
         uses: actions/setup-java@v2
         with: # running setup-java and overwrites the settings.xml
           java-version: '11'
+          distribution: 'zulu'
           architecture: x64
           server-id: maven.forgerock.org-community # Value of the distributionManagement/repository/id field of the pom.xml
           server-username: MAVEN_USERNAME # env variable for username in deploy
