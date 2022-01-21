@@ -12,13 +12,15 @@ jobs:
           ref: ${{ github.ref }}
 
       - name: Set up forgerock maven repository
-        uses: actions/setup-java@v1
+        uses: actions/setup-java@v2
         with: # running setup-java and overwrites the settings.xml
           java-version: '11'
+          distribution: 'zulu'
           architecture: x64
           server-id: maven.forgerock.org-community # Value of the distributionManagement/repository/id field of the pom.xml
           server-username: MAVEN_USERNAME # env variable for username in deploy
           server-password: MAVEN_CENTRAL_TOKEN # env variable for token in deploy
+          cache: 'maven'
 
       - name: Set up snapshot forgerock maven repository
         if: contains(github.ref, 'SNAPSHOT')
