@@ -131,7 +131,8 @@ public enum ErrorCode implements StandardErrorCode {
 
     OBRI_PSD2_CERTIFICATE_PRINCIPAL_MISSING("OBRI.PSD2.Certificate.Principal.Missing"),
     PSD_CERT_MISSING_JWKURI_MSG( "OBRI.PSD2.Certificate.Jwkuri.Missing"),
-    ;
+
+    CUSTOMER_INFO_NOT_FOUND("Customer.Info.NotFound");
 
     private String value;
 
