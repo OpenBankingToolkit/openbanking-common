@@ -721,11 +721,17 @@ public enum OBRIErrorType {
             HttpStatus.BAD_REQUEST,
             ErrorCode.OBRI_SESSION_TOKEN_INVALID,
             "Invalid session token. Invalid format"),
+
     SESSION_TOKEN_EXPIRED(
             HttpStatus.FORBIDDEN,
             ErrorCode.OBRI_SESSION_EXPIRED,
             "Session has expired"),
-    ;
+
+    CUSTOMER_INFO_NOT_FOUND(
+            HttpStatus.NOT_FOUND,
+            ErrorCode.CUSTOMER_INFO_NOT_FOUND,
+            "Customer info not found"
+    );
 
     private HttpStatus httpStatus;
     private StandardErrorCode code;
