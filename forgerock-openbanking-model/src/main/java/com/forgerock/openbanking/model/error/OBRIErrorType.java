@@ -550,6 +550,19 @@ public enum OBRIErrorType {
             OBStandardErrorCodes1.UK_OBIE_RULES_FAILS_CONTROL_PARAMETERS,
             "The field '%s' breach a limitation set by '%s'"
     ),
+    REQUEST_VRP_CONTROL_PARAMETERS_PAYMENT_PERIODIC_LIMIT_BREACH(
+            HttpStatus.BAD_REQUEST,
+            OBStandardErrorCodes1.UK_OBIE_RULES_FAILS_CONTROL_PARAMETERS,
+            "Unable to complete payment due to payment limit breach, periodic limit of '%s' '%s' for period '%s' '%s' has been breached"
+    ),
+    REQUEST_VRP_LIMIT_BREACH_SIMULATION_INVALID_HEADER_VALUE(
+            HttpStatus.BAD_REQUEST,
+            ErrorCode.OBRI_REQUEST_VRP_LIMIT_BREACH_SIMULATION_INVALID_HEADER_VALUE,
+            "Invalid Header value '%s', unable to simulate the payment limitation breach"),
+    REQUEST_VRP_LIMIT_BREACH_SIMULATION_NO_MATCHING_LIMIT_IN_CONSENT(
+            HttpStatus.BAD_REQUEST,
+            ErrorCode.OBRI_REQUEST_VRP_LIMIT_BREACH_SIMULATION_NO_MATCHING_LIMIT_IN_CONSENT,
+            "No Periodic Limit found in the consent for Header value '%s', unable to simulate the payment limitation breach"),
     REQUEST_UNDEFINED_ERROR_YET(
             HttpStatus.BAD_REQUEST,
             ErrorCode.OBRI_REQUEST_UNDEFINED_ERROR_YET,
