@@ -90,6 +90,8 @@ public enum ErrorCode implements StandardErrorCode {
 
     OBRI_REQUEST_VRP_INITIATION_DOES_NOT_MATCH_CONSENT("OBRI.Request.Data.initiation.not.matching.consent.inititation"),
     OBRI_REQUEST_VRP_RISK_DOES_NOT_MATCH_CONSENT("OBRI.Request.Data.risk.not.matching.consent.risk"),
+    OBRI_REQUEST_VRP_LIMIT_BREACH_SIMULATION_INVALID_HEADER_VALUE("OBRI.Request.Data.vrp.limit.breach.simulation.invalid.header.value"),
+    OBRI_REQUEST_VRP_LIMIT_BREACH_SIMULATION_NO_MATCHING_LIMIT_IN_CONSENT("OBRI.Request.Data.vrp.limit.breach.simulation.no.matching.limit.in.consent"),
 
     OBRI_SERVER_INTERNAL_ERROR("OBRI.Server.InternalError"),
     OBRI_REQUEST_UNDEFINED_ERROR_YET("OBRI.Request.ErrorUnknown"),
