@@ -28,6 +28,7 @@ import com.nimbusds.jose.jwk.JWKSet;
 import com.nimbusds.jose.util.Base64;
 import com.nimbusds.jwt.JWTClaimsSet;
 import org.joda.time.DateTime;
+import org.joda.time.LocalDate;
 import org.springframework.boot.actuate.trace.http.HttpTrace;
 import org.springframework.boot.autoconfigure.jackson.Jackson2ObjectMapperBuilderCustomizer;
 import org.springframework.context.annotation.Bean;
@@ -43,6 +44,8 @@ public class SerialiserConfig {
             jacksonObjectMapperBuilder.serializerByType(Base64.class, new Base64Serialiser());
             jacksonObjectMapperBuilder.serializerByType(DateTime.class, new IsoDateTimeSerializer());
             jacksonObjectMapperBuilder.deserializerByType(DateTime.class, new IsoDateTimeDeserializer());
+            jacksonObjectMapperBuilder.serializerByType(LocalDate.class, new IsoLocalDateSerializer());
+            jacksonObjectMapperBuilder.deserializerByType(LocalDate.class, new IsoLocalDateDeserializer());
             jacksonObjectMapperBuilder.deserializerByType(OBExternalPermissions1Code.class, new OBExternalPermissions1CodeDeserializer());
             jacksonObjectMapperBuilder.deserializerByType(JWTClaimsSet.class, new JWTClaimsSetDeserializer());
             jacksonObjectMapperBuilder.serializerByType(OBExternalPermissions1Code.class, new OBExternalPermissions1CodeSerializer());
