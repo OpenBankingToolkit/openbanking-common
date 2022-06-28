@@ -92,6 +92,13 @@ public enum ErrorCode implements StandardErrorCode {
     OBRI_REQUEST_VRP_RISK_DOES_NOT_MATCH_CONSENT("OBRI.Request.Data.risk.not.matching.consent.risk"),
     OBRI_REQUEST_VRP_LIMIT_BREACH_SIMULATION_INVALID_HEADER_VALUE("OBRI.Request.Data.vrp.limit.breach.simulation.invalid.header.value"),
     OBRI_REQUEST_VRP_LIMIT_BREACH_SIMULATION_NO_MATCHING_LIMIT_IN_CONSENT("OBRI.Request.Data.vrp.limit.breach.simulation.no.matching.limit.in.consent"),
+    OBRI_REQUEST_VRP_MAX_INDIVIDUAL_AMOUNT_TOO_SMALL("OBRI.Request.vrp.MaxIndividual.Amount.Too.Small"),
+    OBRI_REQUEST_VRP_TYPE_MUST_BE_SWEEPING("OBRI.Request.vrp.VrpType.must.be.sweeping"),
+    OBRI_REQUEST_VRP_RISK_PAYMENT_CONTEXT_CODE_INVALID("OBRI.Request.vrp.risk.PaymentContextCode.invalid"),
+    OBRI_REQUEST_VRP_PSU_AUTHENTICATION_METHODS_INVALID("OBRI.Request.vrp.PSUAuthenticationMethods.invalid"),
+    OBRI_REQUEST_VRP_CONSENT_VALID_TO_DATE_INVALID("OBRI.Request.vrp.consent.ValidToDateTime.invalid"),
+    OBRI_REQUEST_VRP_CONSENT_VALID_FROM_DATE_INVALID("OBRI.Request.vrp.consent.ValidFromDateTime.invalid"),
+    OBRI_REQUEST_AMOUNT_MAX_2_DP("OBRI.Request.Amount.Max.2.DecimalPlaces"),
 
     OBRI_SERVER_INTERNAL_ERROR("OBRI.Server.InternalError"),
     OBRI_REQUEST_UNDEFINED_ERROR_YET("OBRI.Request.ErrorUnknown"),
