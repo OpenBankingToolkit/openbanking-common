@@ -563,13 +563,41 @@ public enum OBRIErrorType {
             HttpStatus.BAD_REQUEST,
             ErrorCode.OBRI_REQUEST_VRP_LIMIT_BREACH_SIMULATION_NO_MATCHING_LIMIT_IN_CONSENT,
             "No Periodic Limit found in the consent for Header value '%s', unable to simulate the payment limitation breach"),
-    REQUEST_VRP_MAX_INDIVIDUAL_AMOUNT_TOO_SMALL(HttpStatus.BAD_REQUEST, ErrorCode.OBRI_REQUEST_VRP_MAX_INDIVIDUAL_AMOUNT_TOO_SMALL, "'MaximumIndividualAmount' must be >= %.2f"),
-    REQUEST_VRP_TYPE_MUST_BE_SWEEPING(HttpStatus.BAD_REQUEST, ErrorCode.OBRI_REQUEST_VRP_TYPE_MUST_BE_SWEEPING, "'VRPType' field only supports value 'UK.OBIE.VRPType.Sweeping'"),
-    REQUEST_VRP_RISK_PAYMENT_CONTEXT_CODE_INVALID(HttpStatus.BAD_REQUEST, ErrorCode.OBRI_REQUEST_VRP_RISK_PAYMENT_CONTEXT_CODE_INVALID, "'Risk.PaymentContextCode' only supports values: ['PartyToParty', 'TransferToSelf']"),
-    REQUEST_VRP_PSU_AUTHENTICATION_METHODS_INVALID(HttpStatus.BAD_REQUEST, ErrorCode.OBRI_REQUEST_VRP_PSU_AUTHENTICATION_METHODS_INVALID, "'PSUAuthenticationMethods' field only supports value 'UK.OBIE.SCANotRequired'"),
-    REQUEST_VRP_CONSENT_VALID_TO_DATE_INVALID(HttpStatus.BAD_REQUEST, ErrorCode.OBRI_REQUEST_VRP_CONSENT_VALID_TO_DATE_INVALID, "'ValidToDateTime' must be > 'ValidFromDateTime'"),
-    REQUEST_VRP_CONSENT_VALID_FROM_DATE_INVALID(HttpStatus.BAD_REQUEST, ErrorCode.OBRI_REQUEST_VRP_CONSENT_VALID_FROM_DATE_INVALID, "'ValidFromDateTime' cannot be more than %s days in the future"),
-    REQUEST_AMOUNT_MAX_2_DP(HttpStatus.BAD_REQUEST, ErrorCode.OBRI_REQUEST_AMOUNT_MAX_2_DP, "Amount represented in field: '%s' can have a maximum of 2 decimal places"),
+    REQUEST_VRP_MAX_INDIVIDUAL_AMOUNT_TOO_SMALL(
+            HttpStatus.BAD_REQUEST,
+            ErrorCode.OBRI_REQUEST_VRP_MAX_INDIVIDUAL_AMOUNT_TOO_SMALL,
+            "'MaximumIndividualAmount' must be >= %.2f"
+    ),
+    REQUEST_VRP_TYPE_MUST_BE_SWEEPING(
+            HttpStatus.BAD_REQUEST,
+            ErrorCode.OBRI_REQUEST_VRP_TYPE_MUST_BE_SWEEPING,
+            "'VRPType' field only supports value 'UK.OBIE.VRPType.Sweeping'")
+    ,
+    REQUEST_VRP_RISK_PAYMENT_CONTEXT_CODE_INVALID(
+            HttpStatus.BAD_REQUEST,
+            ErrorCode.OBRI_REQUEST_VRP_RISK_PAYMENT_CONTEXT_CODE_INVALID,
+            "'Risk.PaymentContextCode' only supports values: ['PartyToParty', 'TransferToSelf']"
+    ),
+    REQUEST_VRP_PSU_AUTHENTICATION_METHODS_INVALID(
+            HttpStatus.BAD_REQUEST,
+            ErrorCode.OBRI_REQUEST_VRP_PSU_AUTHENTICATION_METHODS_INVALID,
+            "'PSUAuthenticationMethods' field only supports value 'UK.OBIE.SCANotRequired'"
+    ),
+    REQUEST_VRP_CONSENT_VALID_TO_DATE_INVALID(
+            HttpStatus.BAD_REQUEST,
+            ErrorCode.OBRI_REQUEST_VRP_CONSENT_VALID_TO_DATE_INVALID,
+            "'ValidToDateTime' must be > 'ValidFromDateTime'"
+    ),
+    REQUEST_VRP_CONSENT_VALID_FROM_DATE_INVALID(
+            HttpStatus.BAD_REQUEST,
+            ErrorCode.OBRI_REQUEST_VRP_CONSENT_VALID_FROM_DATE_INVALID,
+            "'ValidFromDateTime' cannot be more than %s days in the future"
+    ),
+    REQUEST_AMOUNT_MAX_2_DP(
+            HttpStatus.BAD_REQUEST,
+            ErrorCode.OBRI_REQUEST_AMOUNT_MAX_2_DP,
+            "Amount represented in field: '%s' can have a maximum of 2 decimal places"
+    ),
     REQUEST_UNDEFINED_ERROR_YET(
             HttpStatus.BAD_REQUEST,
             ErrorCode.OBRI_REQUEST_UNDEFINED_ERROR_YET,
