@@ -86,7 +86,7 @@ public class CountryCodes {
         twoLetterToThreeLetterCodes.put("CU","CUB");
         twoLetterToThreeLetterCodes.put("CY","CYP");
         twoLetterToThreeLetterCodes.put("CZ","CZE");
-        twoLetterToThreeLetterCodes.put("DK","DNK");
+        twoLetterToThreeLetterCodes.put("DK","DEN");
         twoLetterToThreeLetterCodes.put("DJ","DJI");
         twoLetterToThreeLetterCodes.put("DM","DMA");
         twoLetterToThreeLetterCodes.put("DO","DOM");
@@ -148,7 +148,7 @@ public class CountryCodes {
         twoLetterToThreeLetterCodes.put("KW","KWT");
         twoLetterToThreeLetterCodes.put("KG","KGZ");
         twoLetterToThreeLetterCodes.put("LA","LAO");
-        twoLetterToThreeLetterCodes.put("LV","LVA");
+        twoLetterToThreeLetterCodes.put("LV","LAT");
         twoLetterToThreeLetterCodes.put("LB","LBN");
         twoLetterToThreeLetterCodes.put("LS","LSO");
         twoLetterToThreeLetterCodes.put("LR","LBR");
