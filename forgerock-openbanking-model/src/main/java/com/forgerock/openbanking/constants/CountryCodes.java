@@ -154,7 +154,7 @@ public class CountryCodes {
         twoLetterToThreeLetterCodes.put("LR","LBR");
         twoLetterToThreeLetterCodes.put("LY","LBY");
         twoLetterToThreeLetterCodes.put("LI","LIE");
-        twoLetterToThreeLetterCodes.put("LT","LTU");
+        twoLetterToThreeLetterCodes.put("LT","LTH");
         twoLetterToThreeLetterCodes.put("LU","LUX");
         twoLetterToThreeLetterCodes.put("MO","MAC");
         twoLetterToThreeLetterCodes.put("MK","MKD");
