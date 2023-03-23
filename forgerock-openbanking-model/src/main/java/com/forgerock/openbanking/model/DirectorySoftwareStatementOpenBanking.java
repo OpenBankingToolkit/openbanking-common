@@ -45,7 +45,7 @@ public class DirectorySoftwareStatementOpenBanking implements DirectorySoftwareS
     String software_client_id;
     String software_client_name;
     String software_client_description;
-    Double software_version;
+    String software_version;
     String software_client_uri;
     List<String> software_redirect_uris;
     List<String> software_roles;
